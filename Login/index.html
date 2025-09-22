@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Falvey Project · Sign In / Sign Up</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- =====================
+       Top Navigation Header
+       ===================== -->
+  <header class="site-header">
+    <div class="brand">
+      <!-- Simple circle logo placeholder (replace with real logo if you have one) -->
+      <div class="logo-circle" aria-hidden="true">F</div>
+      <span class="brand-name">Falvey Insurance Group</span>
+    </div>
+  </header>
+
+  <!-- =====================
+       Main Auth Section
+       ===================== -->
+  <main class="auth-wrap">
+    <section class="auth-card">
+      <!-- Hidden radio buttons to control which form is visible -->
+      <input type="radio" id="toggle-signin" name="auth" class="toggle-input" checked />
+      <input type="radio" id="toggle-signup" name="auth" class="toggle-input" />
+
+      <!-- Toggle Buttons (labels act like buttons) -->
+      <div class="toggle">
+        <label class="toggle-btn" for="toggle-signin">Sign In</label>
+        <label class="toggle-btn" for="toggle-signup">Sign Up</label>
+        <!-- White highlight background that slides left/right -->
+        <span class="toggle-indicator" aria-hidden="true"></span>
+      </div>
+
+      <!-- =====================
+           Sign In Form
+           ===================== -->
+      <div class="forms">
+        <form class="form form-signin" autocomplete="on" novalidate>
+          <h2 class="form-title">Welcome back</h2>
+
+          <label for="loginEmail">Work Email</label>
+          <input id="loginEmail" type="email" placeholder="name@company.com" required />
+
+          <label for="loginPassword">Password</label>
+          <input id="loginPassword" type="password" placeholder="••••••••" minlength="8" required />
+
+          <button class="primary" type="submit">Sign In</button>
+          <p class="hint">
+            New here? Switch to
+            <label class="inline-link" for="toggle-signup">Sign Up</label>
+          </p>
+        </form>
+
+        <!-- =====================
+             Sign Up Form
+             ===================== -->
+        <form class="form form-signup" autocomplete="on" novalidate>
+          <h2 class="form-title">Create your account</h2>
+
+          <label for="empId">Employee ID</label>
+          <input id="empId" type="text" placeholder="e.g., FG-10293" required />
+
+          <label for="signUpEmail">Work Email</label>
+          <input id="signUpEmail" type="email" placeholder="name@company.com" required />
+
+          <label for="signUpPassword">Password</label>
+          <input id="signUpPassword" type="password" placeholder="Min 8 characters" minlength="8" required />
+
+          <label for="signUpPassword2">Confirm Password</label>
+          <input id="signUpPassword2" type="password" placeholder="Re-enter password" minlength="8" required />
+
+          <button class="primary" type="submit">Create Account</button>
+          <p class="hint">
+            Already have an account? Go to
+            <label class="inline-link" for="toggle-signin">Sign In</label>
+          </p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- =====================
+       Footer Section
+       ===================== -->
+  <footer class="site-footer">
+    <small>© 2025 Falvey Project · Student prototype</small>
+  </footer>
+</body>
+</html>
