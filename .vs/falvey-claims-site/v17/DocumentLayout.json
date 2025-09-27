@@ -1,0 +1,122 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\GitHub\\falvey-claims-site\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\GitHub\\falvey-claims-site\\db\\FalveyInsuranceGroupContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:db\\FalveyInsuranceGroupContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\GitHub\\falvey-claims-site\\backend\\controllers\\CustomerRecordsController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\controllers\\CustomerRecordsController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\GitHub\\falvey-claims-site\\FalveyInsuranceGroup.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:FalveyInsuranceGroup.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\GitHub\\falvey-claims-site\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\GitHub\\falvey-claims-site\\backend\\models\\CustomerRecord.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\models\\CustomerRecord.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\GitHub\\falvey-claims-site\\backend\\dtos\\CustomerRecordDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\dtos\\CustomerRecordDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 8,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FalveyInsuranceGroup.http",
+              "DocumentMoniker": "C:\\GitHub\\falvey-claims-site\\FalveyInsuranceGroup.http",
+              "RelativeDocumentMoniker": "FalveyInsuranceGroup.http",
+              "ToolTip": "C:\\GitHub\\falvey-claims-site\\FalveyInsuranceGroup.http",
+              "RelativeToolTip": "FalveyInsuranceGroup.http",
+              "ViewState": "AgIAAHsAAAAAAAAAAAAIwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2025-09-27T19:47:57.736Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\GitHub\\falvey-claims-site\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\GitHub\\falvey-claims-site\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-09-27T19:38:06.893Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CustomerRecord.cs",
+              "DocumentMoniker": "C:\\GitHub\\falvey-claims-site\\backend\\models\\CustomerRecord.cs",
+              "RelativeDocumentMoniker": "backend\\models\\CustomerRecord.cs",
+              "ToolTip": "C:\\GitHub\\falvey-claims-site\\backend\\models\\CustomerRecord.cs",
+              "RelativeToolTip": "backend\\models\\CustomerRecord.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAIAwwAgAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-27T17:43:42.841Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CustomerRecordsController.cs",
+              "DocumentMoniker": "C:\\GitHub\\falvey-claims-site\\backend\\controllers\\CustomerRecordsController.cs",
+              "RelativeDocumentMoniker": "backend\\controllers\\CustomerRecordsController.cs",
+              "ToolTip": "C:\\GitHub\\falvey-claims-site\\backend\\controllers\\CustomerRecordsController.cs",
+              "RelativeToolTip": "backend\\controllers\\CustomerRecordsController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABYAAABTAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-27T17:35:45.969Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FalveyInsuranceGroupContext.cs",
+              "DocumentMoniker": "C:\\GitHub\\falvey-claims-site\\db\\FalveyInsuranceGroupContext.cs",
+              "RelativeDocumentMoniker": "db\\FalveyInsuranceGroupContext.cs",
+              "ToolTip": "C:\\GitHub\\falvey-claims-site\\db\\FalveyInsuranceGroupContext.cs",
+              "RelativeToolTip": "db\\FalveyInsuranceGroupContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-27T16:13:43.762Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CustomerRecordDto.cs",
+              "DocumentMoniker": "C:\\GitHub\\falvey-claims-site\\backend\\dtos\\CustomerRecordDto.cs",
+              "RelativeDocumentMoniker": "backend\\dtos\\CustomerRecordDto.cs",
+              "ToolTip": "C:\\GitHub\\falvey-claims-site\\backend\\dtos\\CustomerRecordDto.cs",
+              "RelativeToolTip": "backend\\dtos\\CustomerRecordDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-27T17:43:23.939Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

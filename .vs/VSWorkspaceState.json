@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\backend",
+    "\\backend\\controllers",
+    "\\backend\\dtos",
+    "\\backend\\models",
+    "\\db"
+  ],
+  "SelectedNode": "\\db\\database.sql",
+  "PreviewInSolutionExplorer": false
+}

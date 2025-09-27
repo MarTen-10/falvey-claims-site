@@ -1,4 +1,4 @@
-namespace FalveyProject.backend.dtos
+namespace FalveyInsuranceGroup.Backend.Dtos
 {
     public class EmployeeDto
     {
@@ -7,5 +7,7 @@ namespace FalveyProject.backend.dtos
         public string? title { get; set; }
         public string? email { get; set; }
         public string? phone { get; set; }
+        public string? status { get; set; }
+        public DateTime created_at { get; set; }
     }
 }
