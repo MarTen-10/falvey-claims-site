@@ -6,59 +6,48 @@ using System.Xml.Linq;
 
 namespace FalveyInsuranceGroup.Backend.Models
 {
+    [Table("customers")]
     public class Customer
     {
         [Key]
         [Column("customer_id")]
         public int customer_id { get; set; }
 
-        //[Required]
         [MaxLength(100)]
         [Column("name")]
-        public string? name { get; set; }// = null!;
+        public required string name { get; set; }
 
-        //[Required]
         [MaxLength(120)]
         [Column("email")]
-        public string? email { get; set; }// = null!;
+        public string? email { get; set; }
 
-        //[Required]
         [MaxLength(25)]
         [Column("phone")]
         public string? phone { get; set; }
 
-        //[Required]
         [MaxLength(120)]
         [Column("addr_line1")]
-        public string? addr_line1 { get; set; }// = null!;
+        public string? addr_line1 { get; set; }
 
         [MaxLength(120)]
         [Column("addr_line2")]
-        public string? addr_line2 { get; set; }// = null!;
+        public string? addr_line2 { get; set; }
 
-        //[Required]
         [MaxLength(80)]
         [Column("city")]
-        public string? city { get; set; }// = null!;
+        public string? city { get; set; }
 
-        //[Required]
         [MaxLength(10)]
         [Column("state_code")]
-        public string? state_code { get; set; }// = null!;
+        public string? state_code { get; set; }
 
-        //[Required]
         [MaxLength(12)]
         [Column("zip_code")]
-        public string? zip_code { get; set; }// = null!;
+        public string? zip_code { get; set; }
 
-        //[Required]
         [Column("created_at")]
-        public DateTime created_at { get; set; }
+        public required DateTime created_at { get; set; } = DateTime.Now;
 
-        // Remove???
-
-        //[JsonIgnore]
-        //public ICollection<Policy>? policies { get; set; }
         public ICollection<Policy> policies { get; set; } = new List<Policy>();
     }
 }

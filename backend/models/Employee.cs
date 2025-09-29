@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FalveyInsuranceGroup.Backend.Models
 {
+    [Table("employees")]
     public class Employee
     {
         [Key]
@@ -24,13 +25,13 @@ namespace FalveyInsuranceGroup.Backend.Models
 
         [MaxLength(25)]
         [Column("phone")]
-        public string? phone { get; set; } 
+        public string? phone { get; set; }
 
         [Column("status")]
-        public string? status { get; set; }
+        public required string status { get; set; } = "Active";
 
         [Column("created_at")]
-        public DateTime created_at { get; set; }
+        public required DateTime created_at { get; set; } = DateTime.Now;
 
     }
 }

@@ -142,7 +142,7 @@ CREATE TABLE `customer_records` (
   KEY `ix_documents_target` (`attached_to_type`,`attached_to_id`),
   KEY `ix_documents_time` (`uploaded_at`),
   CONSTRAINT `fk_documents_employee` FOREIGN KEY (`uploaded_by`) REFERENCES `employees` (`employee_id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151,7 +151,7 @@ CREATE TABLE `customer_records` (
 
 LOCK TABLES `customer_records` WRITE;
 /*!40000 ALTER TABLE `customer_records` DISABLE KEYS */;
-INSERT INTO `customer_records` VALUES (1,'inspection.pdf','https://files.example/inspection.pdf',1,'2025-09-24 18:49:35','Policy',1,'Initial inspection report'),(2,'images.pdf','https://files.example/inspection.pdf',3,'2025-09-24 18:49:35','Policy',3,'Images');
+INSERT INTO `customer_records` VALUES (1,'inspection.pdf','https://files.example/inspection.pdf',1,'2025-09-24 18:49:35','Policy',1,'Initial inspection report'),(2,'images.pdf','https://files.example/inspection.pdf',3,'2025-09-24 18:49:35','Policy',3,'Images'),(3,'other.pdf','https://files.example/other.pdf',2,'2025-09-24 18:49:35','Policy',2,'Other');
 /*!40000 ALTER TABLE `customer_records` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -217,7 +217,7 @@ CREATE TABLE `employees` (
 
 LOCK TABLES `employees` WRITE;
 /*!40000 ALTER TABLE `employees` DISABLE KEYS */;
-INSERT INTO `employees` VALUES (1,'Jane Doe','Agent','jane.doe@emailplace.com','4015557896','Active','2025-09-24 18:49:34'),(2,'John Doe','Agent','john.doe@emailplace.com','4015557897','Active','2025-09-24 18:49:34'),(3,'Martin Doe','Agent','martin.doe@emailplace.com','4015557807','Active','2025-09-24 18:49:34'),(4,'Eric Doe','Agent','eric.doe@emailplace.com','4015557891','Active','2025-09-24 18:49:34'),(5,'Frank Doe','Agent','frank.doe@emailplace.com','4015557000','Active','2025-09-24 18:49:34');
+INSERT INTO `employees` VALUES (1,'Jane Doe','Agent','jane.doe@emailplace.com','4015557896','Active','2025-09-24 18:49:34'),(2,'John Doe','Agent','john.doe@emailplace.com','4015557897','Active','2025-09-24 18:49:34'),(3,'Martin Doe','Agent','martin.doe@emailplace.com','4015557807','Active','2025-09-24 18:49:34'),(4,'Eric Doe','Agent','eric.doe@emailplace.com','4015557891','Active','2025-09-24 18:49:34'),(5,'Fred Fox','Agent','fred.fox@emailplace.com','4015557000','Active','2025-09-24 18:49:34');
 /*!40000 ALTER TABLE `employees` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -381,7 +381,7 @@ CREATE TABLE `users` (
   KEY `ix_users_active` (`is_active`),
   CONSTRAINT `fk_users_customer` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`customer_id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `fk_users_employee` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`employee_id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -390,7 +390,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'abc@client.com','$2b$10$replace_me_customer','Customer',1,NULL,1,'2025-09-24 18:49:34',NULL),(2,'jane.doe@insco.com','$2b$10$replace_me_employee','Employee',NULL,1,1,'2025-09-24 18:49:35',NULL);
+INSERT INTO `users` VALUES (1,'abc@client.com','$2b$10$replace_me_customer','Customer',1,NULL,1,'2025-09-24 18:49:34',NULL),(2,'jane.doe@emailplace.com','$2b$10$replace_me_employee','Employee',NULL,1,1,'2025-09-24 18:49:35',NULL),(3,'martin.doe@emailplace.com','$2b$10$replace_me_employee','Employee',NULL,3,1,'2025-09-29 00:05:34',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -411,4 +411,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-09-27 16:11:46
+-- Dump completed on 2025-09-28 20:33:35

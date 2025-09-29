@@ -16,17 +16,24 @@ namespace FalveyInsuranceGroup.Db
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Customer>().HasData();
-            modelBuilder.Entity<Employee>().HasData();
-            modelBuilder.Entity<Policy>().HasData();
-            //modelBuilder.Entity<CustomerRecord>().HasData();
+            modelBuilder.Entity<Customer>();
             modelBuilder.Entity<CustomerRecord>().ToTable("customer_records");
+            modelBuilder.Entity<Employee>()
+                .HasIndex(employee_index => employee_index.email)
+                .IsUnique();
+            modelBuilder.Entity<Policy>();
+            modelBuilder.Entity<User>()
+                .HasIndex(user_index => user_index.email)
+                .IsUnique();
+
         }
 
         // Specify DbSet instance for operating with databases
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<CustomerRecord> CustomerRecords { get; set; }
         public DbSet<Employee> Employees { get; set; }       
         public DbSet<Policy> Policies { get; set; }
-        public DbSet<CustomerRecord> CustomerRecords { get; set; }
+        public DbSet<User> Users { get; set; }
+
     }
 }

@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.JsonPatch;
 using FalveyInsuranceGroup.Backend.Dtos;
 
-
 namespace FalveyInsuranceGroup.Backend.Controllers
 {
     [Route("api/[controller]")]

@@ -6,6 +6,7 @@ using System.Xml.Linq;
 
 namespace FalveyInsuranceGroup.Backend.Models
 {
+    [Table("customer_records")]
     public class CustomerRecord
     {
         [Key]
@@ -27,13 +28,13 @@ namespace FalveyInsuranceGroup.Backend.Models
         public Employee? uploaded_by_employee { get; set; }  // links to employee_id
 
         [Column("uploaded_at")]
-        public DateTime uploaded_at { get; set; } = DateTime.Now;
+        public required DateTime uploaded_at { get; set; } = DateTime.Now;
 
         [Column("attached_to_type")]
         public required string attached_to_type { get; set; }
 
         [Column("attached_to_id")]
-        public int attached_to_id { get; set; }
+        public required int attached_to_id { get; set; }
 
         [Column("description")]
         public string? description { get; set; }

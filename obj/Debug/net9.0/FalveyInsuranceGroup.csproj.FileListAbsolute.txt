@@ -353,3 +353,4 @@ C:\GitHub\falvey-claims-site\obj\Debug\net9.0\staticwebassets.build.endpoints.js
 C:\GitHub\falvey-claims-site\obj\Debug\net9.0\FalveyIn.A5AC8FC3.Up2Date
 C:\GitHub\falvey-claims-site\obj\Debug\net9.0\FalveyInsuranceGroup.genruntimeconfig.cache
 C:\GitHub\falvey-claims-site\obj\Debug\net9.0\ref\FalveyInsuranceGroup.dll
+C:\GitHub\falvey-claims-site\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt

@@ -16,6 +16,16 @@ builder.Services
 // Add Swagger/Swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:5113") // frontend dev server
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+        });
+});
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 if (string.IsNullOrEmpty(connectionString))
@@ -44,6 +54,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors("AllowFrontend"); // Enable CORS before MapControllers
 app.UseAuthorization();
 app.MapControllers();
 app.Run();

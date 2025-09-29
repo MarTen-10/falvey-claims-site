@@ -80,16 +80,16 @@ namespace FalveyInsuranceGroup.Backend.Controllers
         
         // For patching an existing policy
         [HttpPatch("{id}")]
-        public async Task<IActionResult> PatchPolicy(int id, JsonPatchDocument<Policy> patchDocument)
+        public async Task<IActionResult> PatchPolicy(int id, JsonPatchDocument<Policy> patchPolicy)
         {
-            if (patchDocument == null)
+            if (patchPolicy == null)
                 return BadRequest();
 
             var policy = await _context.Policies.FindAsync(id);
             if (policy == null)
                 return NotFound();
 
-            patchDocument.ApplyTo(policy, ModelState);
+            patchPolicy.ApplyTo(policy, ModelState);
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
