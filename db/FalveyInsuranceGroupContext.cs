@@ -34,6 +34,8 @@ namespace FalveyInsuranceGroup.Db
         public DbSet<Employee> Employees { get; set; }       
         public DbSet<Policy> Policies { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Claim> Claims { get; set; }
+        public DbSet<Release> Releases { get; set; }
 
     }
 }
