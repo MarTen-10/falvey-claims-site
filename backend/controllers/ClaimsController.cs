@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using FalveyProject.database;
-using FalveyProject.backend.models;
-using FalveyProject.backend.dtos;
+using FalveyInsuranceGroup.Db;
+using FalveyInsuranceGroup.Backend.Models;
+using FalveyInsuranceGroup.Backend.Dtos;
 using System.Linq.Expressions;
 
-namespace FalveyProject.backend.controllers
+namespace FalveyInsuranceGroup.Backend.Controllers
 {
     /// <summary>
     /// Handles operations related to claim data
@@ -14,9 +14,9 @@ namespace FalveyProject.backend.controllers
     [ApiController]
     public class ClaimsController : ControllerBase
     {
-        private readonly BaseContext _context;
+        private readonly FalveyInsuranceGroupContext _context;
 
-        public ClaimsController(BaseContext context)
+        public ClaimsController(FalveyInsuranceGroupContext context)
         {
             _context = context;
         }
@@ -86,7 +86,7 @@ namespace FalveyProject.backend.controllers
             }
 
             if (!hasValidStatus(dto.status)) {
-                return BadRequest("Invalid type input");
+                return BadRequest("Invalid status input");
             }
 
             // Ensures an existing policy is used
@@ -120,7 +120,6 @@ namespace FalveyProject.backend.controllers
             return NoContent();
         }
 
-
         /// POST: api/claims
 
         /// <summary>
@@ -151,20 +150,20 @@ namespace FalveyProject.backend.controllers
                 return BadRequest("The given claim number is already in use");
             }
              
-            // Ensures an existing policy is used
+            // Ensures an existing policy is given
             if (!await hasValidPolicy(dto.policy_id)) {
                 return BadRequest("The given policy ID does not exist");
             }
 
             if (!hasValidStatus(dto.status)) {
-                return BadRequest("Invalid type input");
+                return BadRequest("Invalid status input");
             }
 
             var new_claim = new Claim
             {
                 policy_id = dto.policy_id,
                 claim_number = dto.claim_number,
-                status = dto.status ?? "Open",  // default if null
+                status = dto.status ?? "Open",  // default 'Open' if null
                 date_of_loss = dto.date_of_loss,
                 date_reported = dto.date_reported,
                 reserve_amount = dto.reserve_amount,
@@ -195,8 +194,7 @@ namespace FalveyProject.backend.controllers
         {
             var claim = await _context.Claims.FindAsync(id);
 
-            if (claim == null)
-            {
+            if (claim == null) {
                 return NotFound($"Claim with ID {id} not found");
             }
 
@@ -291,10 +289,10 @@ namespace FalveyProject.backend.controllers
         /// </returns>
         private async Task<Boolean> hasDuplicateClaimNumber(string claim_number)
         {
-
             return await _context.Claims.AnyAsync(c => c.claim_number == claim_number);
         }
 
 
     }
+
 }
