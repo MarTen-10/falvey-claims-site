@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace FalveyProject.backend.models
+namespace FalveyInsuranceGroup.Backend.Models
 {
     /// <summary>
     /// Represents a claim uploaded to system
@@ -88,4 +88,5 @@ namespace FalveyProject.backend.models
         [Column("created_at")]
         public DateTime created_at { get; set; } = DateTime.Now;
     }
+
 }
