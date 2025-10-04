@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace FalveyProject.backend.models
+namespace FalveyInsuranceGroup.Backend.Models
 {
     /// <summary>
     /// Represents the application releases
@@ -36,4 +36,5 @@ namespace FalveyProject.backend.models
         public string? hotfix_notes { get; set; }
 
     }
+
 }
