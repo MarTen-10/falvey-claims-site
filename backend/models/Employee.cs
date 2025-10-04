@@ -4,17 +4,27 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FalveyInsuranceGroup.Backend.Models
 {
-    [Table("employees")]
+    /// <summary>
+    /// Represents an employee within the organization
+    /// </summary>
+    [Table("Employees")]
     public class Employee
     {
+        /// <summary>
+        /// The unique identifier for employee
+        /// </summary>
         [Key]
-        [Column("employee_id")]
-        public int employee_id { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int? employee_id { get; set; }
 
+        [Required]
         [MaxLength(100)]
         [Column("name")]
         public required string name { get; set; }
 
+        /// <summary>
+        /// The title of employee. Field is optional
+        /// </summary>
         [MaxLength(60)]
         [Column("title")]
         public string? title { get; set; }
@@ -27,11 +37,19 @@ namespace FalveyInsuranceGroup.Backend.Models
         [Column("phone")]
         public string? phone { get; set; }
 
+        /// <summary>
+        /// The employement status of employee (e.g., Active, Inactive, Leave, Terminated)
+        /// </summary>
+        [Required]
+        [MaxLength(400)]
         [Column("status")]
         public required string status { get; set; } = "Active";
 
+        /// <summary>
+        /// The date and time when employee record was created
+        /// </summary>
         [Column("created_at")]
-        public required DateTime created_at { get; set; } = DateTime.Now;
-
+        public DateTime created_at { get; set; } = DateTime.Now;
     }
 }
+
