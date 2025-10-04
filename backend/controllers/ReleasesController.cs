@@ -1,11 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using FalveyProject.database;
-using FalveyProject.backend.models;
+using FalveyInsuranceGroup.Db;
+using FalveyInsuranceGroup.Backend.Models;
 using System.Text.RegularExpressions;
 
-
-namespace FalveyProject.backend.controllers
+namespace FalveyInsuranceGroup.Backend.Controllers
 {
     /// <summary>
     /// Handles operations related to application releases
@@ -14,8 +13,8 @@ namespace FalveyProject.backend.controllers
     [ApiController]
     public class ReleasesController : ControllerBase
     {
-        private readonly BaseContext _context;
-        public ReleasesController(BaseContext context)
+        private readonly FalveyInsuranceGroupContext _context;
+        public ReleasesController(FalveyInsuranceGroupContext context)
         {
             _context = context;
         }
@@ -155,4 +154,5 @@ namespace FalveyProject.backend.controllers
             return NoContent();
         }
     }
+
 }
