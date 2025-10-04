@@ -1,4 +1,4 @@
-namespace FalveyProject.backend.dtos
+namespace FalveyInsuranceGroup.Backend.Dtos
 {
     /// <summary>
     /// Represents the data required to create claim dto
@@ -51,4 +51,5 @@ namespace FalveyProject.backend.dtos
 
         public DateTime created_at { get; set; }
     }
+
 }
