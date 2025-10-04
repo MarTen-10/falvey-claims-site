@@ -1,13 +1,25 @@
 namespace FalveyInsuranceGroup.Backend.Dtos
 {
+    /// <summary>
+    /// Represents the data required to create employee dto
+    /// </summary>
     public class EmployeeDto
     {
-        public int employee_id { get; set; }
-        public required string name { get; set; }
+         /// <summary>
+        /// The unique identifier for employee
+        /// </summary>
+        public int? employee_id { get; set; }
+
+        public required string name { get; set; } = string.Empty;
+
+        /// <summary>
+        /// The title of employee. Field is optional
+        /// </summary>
         public string? title { get; set; }
+
         public string? email { get; set; }
+        
         public string? phone { get; set; }
-        public string? status { get; set; }
-        public DateTime created_at { get; set; }
     }
+
 }
