@@ -57,7 +57,7 @@ namespace FalveyInsuranceGroup.Backend.Controllers
 
             if (employee == null)
             {
-                return NotFound();
+                return NotFound(($"Employee with ID {id} not found");
             }
 
             return Ok(createEmployeeDto(employee));
@@ -237,4 +237,5 @@ namespace FalveyInsuranceGroup.Backend.Controllers
 
     }
 }
+
 
