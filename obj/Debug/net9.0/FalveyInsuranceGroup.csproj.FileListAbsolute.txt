@@ -354,3 +354,5 @@ C:\GitHub\falvey-claims-site\obj\Debug\net9.0\FalveyIn.A5AC8FC3.Up2Date
 C:\GitHub\falvey-claims-site\obj\Debug\net9.0\FalveyInsuranceGroup.genruntimeconfig.cache
 C:\GitHub\falvey-claims-site\obj\Debug\net9.0\ref\FalveyInsuranceGroup.dll
 C:\GitHub\falvey-claims-site\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
+C:\GitHub\falvey-claims-site\bin\Debug\net9.0\Konscious.Security.Cryptography.Argon2.dll
+C:\GitHub\falvey-claims-site\bin\Debug\net9.0\Konscious.Security.Cryptography.Blake2.dll

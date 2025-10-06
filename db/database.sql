@@ -223,7 +223,7 @@ CREATE INDEX ix_sessions_expiry      ON sessions (expires_at);
 CREATE TABLE login_audit (
   audit_id     BIGINT AUTO_INCREMENT PRIMARY KEY,
   user_id      INT NULL,
-  event        ENUM('LOGIN_SUCCESS','LOGIN_FAIL','LOGOUT') NOT NULL,
+  login_event        ENUM('LOGIN_SUCCESS','LOGIN_FAIL','LOGOUT') NOT NULL,
   ip_address   VARCHAR(45),
   user_agent   VARCHAR(300),
   occurred_at  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,

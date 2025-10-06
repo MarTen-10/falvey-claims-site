@@ -52,4 +52,3 @@ namespace FalveyInsuranceGroup.Backend.Models
         public DateTime created_at { get; set; } = DateTime.Now;
     }
 }
-

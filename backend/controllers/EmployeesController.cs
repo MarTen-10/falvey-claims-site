@@ -57,7 +57,7 @@ namespace FalveyInsuranceGroup.Backend.Controllers
 
             if (employee == null)
             {
-                return NotFound(($"Employee with ID {id} not found");
+                return NotFound(($"Employee with ID {id} not found"));
             }
 
             return Ok(createEmployeeDto(employee));
@@ -76,7 +76,7 @@ namespace FalveyInsuranceGroup.Backend.Controllers
         public async Task<ActionResult<EmployeeDto>> addEmployee(Employee employee)
         {
             // Checks to see if all required inputs are provided
-            if (!ModelState.IsValid || !hasValidStatus(employee.status) )
+            if (!ModelState.IsValid || !hasValidStatus(employee.status))
             {
                 return BadRequest("Invalid inputs");
             }
@@ -237,5 +237,4 @@ namespace FalveyInsuranceGroup.Backend.Controllers
 
     }
 }
-
 

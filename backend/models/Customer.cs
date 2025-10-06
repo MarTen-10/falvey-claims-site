@@ -1,53 +1,62 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Numerics;
-using System.Text.Json.Serialization;
-using System.Xml.Linq;
 
 namespace FalveyInsuranceGroup.Backend.Models
 {
     [Table("customers")]
     public class Customer
     {
-        [Key]
         [Column("customer_id")]
-        public int customer_id { get; set; }
+        [Key]
+        public int? customer_id { get; set; }
 
-        [MaxLength(100)]
         [Column("name")]
+        [Required]
+        [MaxLength(100)]
         public required string name { get; set; }
 
-        [MaxLength(120)]
         [Column("email")]
-        public string? email { get; set; }
+        [Required]
+        [MaxLength(120)]
+        [EmailAddress(ErrorMessage = "Please enter a valid email address.")]
+        public required string email { get; set; }
 
-        [MaxLength(25)]
         [Column("phone")]
-        public string? phone { get; set; }
+        [Required]
+        [StringLength(10, MinimumLength = 10, ErrorMessage = "Please enter a valid phone number with ten digits.")]
+        [RegularExpression(@"^[0-9]+$", ErrorMessage = "Please enter a valid ten-digit phone number (numbers only).")]
+        public required string phone { get; set; }
 
-        [MaxLength(120)]
         [Column("addr_line1")]
-        public string? addr_line1 { get; set; }
+        [Required]
+        [StringLength(120, MinimumLength = 4, ErrorMessage = "Please enter a valid address.")]
+        public required string addr_line1 { get; set; }
 
-        [MaxLength(120)]
         [Column("addr_line2")]
+        [MaxLength(120)]
         public string? addr_line2 { get; set; }
 
-        [MaxLength(80)]
         [Column("city")]
-        public string? city { get; set; }
+        [Required]
+        [StringLength(80, MinimumLength = 2, ErrorMessage = "Please enter a valid city name.")]
+        public required string city { get; set; }
 
-        [MaxLength(10)]
         [Column("state_code")]
-        public string? state_code { get; set; }
+        [Required]
+        [MaxLength(10)]
+        public required string state_code { get; set; }
 
-        [MaxLength(12)]
         [Column("zip_code")]
-        public string? zip_code { get; set; }
+        [StringLength(9, MinimumLength = 5, ErrorMessage = "Please enter a valid zip code between five and nine digits.")]
+        [RegularExpression(@"^[0-9]+$", ErrorMessage = "Please enter a valid zip code (digits only).")]
+        public required string zip_code { get; set; }
 
         [Column("created_at")]
-        public required DateTime created_at { get; set; } = DateTime.Now;
+        public required DateTime created_at { get; set; } = DateTime.UtcNow;
 
-        public ICollection<Policy> policies { get; set; } = new List<Policy>();
+        // Navigation for records
+        // Commented out to prevent policy data from printing.
+        //public ICollection<Policy> policies { get; set; } = new List<Policy>();
+        //public ICollection<CustomerRecord> customer_records { get; set; }
     }
 }

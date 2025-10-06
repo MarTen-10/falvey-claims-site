@@ -15,13 +15,17 @@ namespace FalveyInsuranceGroup.Db
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
+            modelBuilder.Entity<Announcement>();
             modelBuilder.Entity<Customer>();
-            modelBuilder.Entity<CustomerRecord>().ToTable("customer_records");
+            modelBuilder.Entity<CustomerRecord>()
+                .ToTable("customer_records");
             modelBuilder.Entity<Employee>()
                 .HasIndex(employee_index => employee_index.email)
                 .IsUnique();
             modelBuilder.Entity<Policy>();
+            modelBuilder.Entity<Session>()
+                .HasIndex(session_index => session_index.session_id)
+                .IsUnique();
             modelBuilder.Entity<User>()
                 .HasIndex(user_index => user_index.email)
                 .IsUnique();
@@ -29,10 +33,12 @@ namespace FalveyInsuranceGroup.Db
         }
 
         // Specify DbSet instance for operating with databases
+        public DbSet<Announcement> Announcements { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<CustomerRecord> CustomerRecords { get; set; }
         public DbSet<Employee> Employees { get; set; }       
         public DbSet<Policy> Policies { get; set; }
+        public DbSet<Session> Sessions { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Claim> Claims { get; set; }
         public DbSet<Release> Releases { get; set; }

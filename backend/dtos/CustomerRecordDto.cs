@@ -1,6 +1,6 @@
 namespace FalveyInsuranceGroup.Backend.Dtos
 {
-     /// <summary>
+    /// <summary>
     /// Represents the data required to create a customer record dto
     /// </summary>
     public class CustomerRecordDto

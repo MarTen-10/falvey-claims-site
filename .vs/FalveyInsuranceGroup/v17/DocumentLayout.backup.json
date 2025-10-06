@@ -3,32 +3,8 @@
   "WorkspaceRootPath": "C:\\GitHub\\falvey-claims-site\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{AF6FCB33-8D20-49E3-A70C-CE7E2696C53E}|FalveyInsuranceGroup.csproj|c:\\github\\falvey-claims-site\\backend\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AF6FCB33-8D20-49E3-A70C-CE7E2696C53E}|FalveyInsuranceGroup.csproj|solutionrelative:backend\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AF6FCB33-8D20-49E3-A70C-CE7E2696C53E}|FalveyInsuranceGroup.csproj|c:\\github\\falvey-claims-site\\backend\\controllers\\customerrecordscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AF6FCB33-8D20-49E3-A70C-CE7E2696C53E}|FalveyInsuranceGroup.csproj|solutionrelative:backend\\controllers\\customerrecordscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AF6FCB33-8D20-49E3-A70C-CE7E2696C53E}|FalveyInsuranceGroup.csproj|c:\\github\\falvey-claims-site\\backend\\models\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AF6FCB33-8D20-49E3-A70C-CE7E2696C53E}|FalveyInsuranceGroup.csproj|solutionrelative:backend\\models\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AF6FCB33-8D20-49E3-A70C-CE7E2696C53E}|FalveyInsuranceGroup.csproj|c:\\github\\falvey-claims-site\\backend\\controllers\\policiescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AF6FCB33-8D20-49E3-A70C-CE7E2696C53E}|FalveyInsuranceGroup.csproj|solutionrelative:backend\\controllers\\policiescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AF6FCB33-8D20-49E3-A70C-CE7E2696C53E}|FalveyInsuranceGroup.csproj|c:\\github\\falvey-claims-site\\backend\\controllers\\employeescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AF6FCB33-8D20-49E3-A70C-CE7E2696C53E}|FalveyInsuranceGroup.csproj|solutionrelative:backend\\controllers\\employeescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AF6FCB33-8D20-49E3-A70C-CE7E2696C53E}|FalveyInsuranceGroup.csproj|c:\\github\\falvey-claims-site\\falveyinsurancegroup.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
-      "RelativeMoniker": "D:0:0:{AF6FCB33-8D20-49E3-A70C-CE7E2696C53E}|FalveyInsuranceGroup.csproj|solutionrelative:falveyinsurancegroup.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AF6FCB33-8D20-49E3-A70C-CE7E2696C53E}|FalveyInsuranceGroup.csproj|c:\\github\\falvey-claims-site\\backend\\controllers\\customerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AF6FCB33-8D20-49E3-A70C-CE7E2696C53E}|FalveyInsuranceGroup.csproj|solutionrelative:backend\\controllers\\customerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AF6FCB33-8D20-49E3-A70C-CE7E2696C53E}|FalveyInsuranceGroup.csproj|c:\\github\\falvey-claims-site\\db\\falveyinsurancegroupcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AF6FCB33-8D20-49E3-A70C-CE7E2696C53E}|FalveyInsuranceGroup.csproj|solutionrelative:db\\falveyinsurancegroupcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,139 +14,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 13,
+          "SelectedChildIndex": 5,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "FalveyInsuranceGroup.http",
-              "DocumentMoniker": "C:\\GitHub\\falvey-claims-site\\FalveyInsuranceGroup.http",
-              "RelativeDocumentMoniker": "FalveyInsuranceGroup.http",
-              "ToolTip": "C:\\GitHub\\falvey-claims-site\\FalveyInsuranceGroup.http",
-              "RelativeToolTip": "FalveyInsuranceGroup.http",
-              "ViewState": "AgIAAFAAAAAAAAAAAAAYwFUAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
-              "WhenOpened": "2025-09-26T23:50:11.799Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Employee.cs",
-              "DocumentMoniker": "C:\\GitHub\\falvey-claims-site\\backend\\models\\Employee.cs",
-              "RelativeDocumentMoniker": "backend\\models\\Employee.cs",
-              "ToolTip": "C:\\GitHub\\falvey-claims-site\\backend\\models\\Employee.cs",
-              "RelativeToolTip": "backend\\models\\Employee.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-28T23:54:02.331Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Orientation": 0,
-      "VerticalTabListWidth": 256,
-      "FloatingWindowState": {
-        "Id": "abef2d52-c72b-4bbe-b073-bddc7a11d463",
-        "Display": 0,
-        "X": 124,
-        "Y": 315,
-        "Width": 1248,
-        "Height": 469,
-        "WindowState": 0
-      },
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "CustomersController.cs",
-              "DocumentMoniker": "C:\\GitHub\\falvey-claims-site\\backend\\controllers\\CustomersController.cs",
-              "RelativeDocumentMoniker": "backend\\controllers\\CustomersController.cs",
-              "ToolTip": "C:\\GitHub\\falvey-claims-site\\backend\\controllers\\CustomersController.cs",
-              "RelativeToolTip": "backend\\controllers\\CustomersController.cs",
-              "ViewState": "AgIAAE4AAAAAAAAAAAAmwAkAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-28T23:47:58.866Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Orientation": 0,
-      "VerticalTabListWidth": 256,
-      "FloatingWindowState": {
-        "Id": "260ec236-46b6-4945-ac19-9b137573931d",
-        "Display": 0,
-        "X": 46,
-        "Y": 219,
-        "Width": 1248,
-        "Height": 482,
-        "WindowState": 0
-      },
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 3,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "PoliciesController.cs",
-              "DocumentMoniker": "C:\\GitHub\\falvey-claims-site\\backend\\controllers\\PoliciesController.cs",
-              "RelativeDocumentMoniker": "backend\\controllers\\PoliciesController.cs",
-              "ToolTip": "C:\\GitHub\\falvey-claims-site\\backend\\controllers\\PoliciesController.cs",
-              "RelativeToolTip": "backend\\controllers\\PoliciesController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAATAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-28T23:50:09.315Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "EmployeesController.cs",
-              "DocumentMoniker": "C:\\GitHub\\falvey-claims-site\\backend\\controllers\\EmployeesController.cs",
-              "RelativeDocumentMoniker": "backend\\controllers\\EmployeesController.cs",
-              "ToolTip": "C:\\GitHub\\falvey-claims-site\\backend\\controllers\\EmployeesController.cs",
-              "RelativeToolTip": "backend\\controllers\\EmployeesController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-28T23:50:02.34Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "CustomerRecordsController.cs",
-              "DocumentMoniker": "C:\\GitHub\\falvey-claims-site\\backend\\controllers\\CustomerRecordsController.cs",
-              "RelativeDocumentMoniker": "backend\\controllers\\CustomerRecordsController.cs",
-              "ToolTip": "C:\\GitHub\\falvey-claims-site\\backend\\controllers\\CustomerRecordsController.cs",
-              "RelativeToolTip": "backend\\controllers\\CustomerRecordsController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-28T23:49:57.986Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "UsersController.cs",
-              "DocumentMoniker": "C:\\GitHub\\falvey-claims-site\\backend\\controllers\\UsersController.cs",
-              "RelativeDocumentMoniker": "backend\\controllers\\UsersController.cs",
-              "ToolTip": "C:\\GitHub\\falvey-claims-site\\backend\\controllers\\UsersController.cs",
-              "RelativeToolTip": "backend\\controllers\\UsersController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAATAAAAAAAAAA==",
+              "Title": "FalveyInsuranceGroupContext.cs",
+              "DocumentMoniker": "C:\\GitHub\\falvey-claims-site\\db\\FalveyInsuranceGroupContext.cs",
+              "RelativeDocumentMoniker": "db\\FalveyInsuranceGroupContext.cs",
+              "ToolTip": "C:\\GitHub\\falvey-claims-site\\db\\FalveyInsuranceGroupContext.cs",
+              "RelativeToolTip": "db\\FalveyInsuranceGroupContext.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAQwBYAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-28T23:47:44.985Z",
+              "WhenOpened": "2025-10-05T18:45:04.197Z",
               "EditorCaption": ""
             }
           ]

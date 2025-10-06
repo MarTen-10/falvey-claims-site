@@ -3,8 +3,12 @@
   "WorkspaceRootPath": "C:\\GitHub\\falvey-claims-site\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{AF6FCB33-8D20-49E3-A70C-CE7E2696C53E}|FalveyInsuranceGroup.csproj|c:\\github\\falvey-claims-site\\backend\\models\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AF6FCB33-8D20-49E3-A70C-CE7E2696C53E}|FalveyInsuranceGroup.csproj|solutionrelative:backend\\models\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AF6FCB33-8D20-49E3-A70C-CE7E2696C53E}|FalveyInsuranceGroup.csproj|c:\\github\\falvey-claims-site\\backend\\controllers\\sessionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AF6FCB33-8D20-49E3-A70C-CE7E2696C53E}|FalveyInsuranceGroup.csproj|solutionrelative:backend\\controllers\\sessionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AF6FCB33-8D20-49E3-A70C-CE7E2696C53E}|FalveyInsuranceGroup.csproj|c:\\github\\falvey-claims-site\\db\\falveyinsurancegroupcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AF6FCB33-8D20-49E3-A70C-CE7E2696C53E}|FalveyInsuranceGroup.csproj|solutionrelative:db\\falveyinsurancegroupcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,19 +18,32 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 13,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Employee.cs",
-              "DocumentMoniker": "C:\\GitHub\\falvey-claims-site\\backend\\models\\Employee.cs",
-              "RelativeDocumentMoniker": "backend\\models\\Employee.cs",
-              "ToolTip": "C:\\GitHub\\falvey-claims-site\\backend\\models\\Employee.cs",
-              "RelativeToolTip": "backend\\models\\Employee.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Title": "SessionsController.cs",
+              "DocumentMoniker": "C:\\GitHub\\falvey-claims-site\\backend\\controllers\\SessionsController.cs",
+              "RelativeDocumentMoniker": "backend\\controllers\\SessionsController.cs",
+              "ToolTip": "C:\\GitHub\\falvey-claims-site\\backend\\controllers\\SessionsController.cs",
+              "RelativeToolTip": "backend\\controllers\\SessionsController.cs",
+              "ViewState": "AgIAAFUAAAAAAAAAAAA0wGMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-28T23:54:02.331Z",
+              "WhenOpened": "2025-10-05T18:48:37.99Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FalveyInsuranceGroupContext.cs",
+              "DocumentMoniker": "C:\\GitHub\\falvey-claims-site\\db\\FalveyInsuranceGroupContext.cs",
+              "RelativeDocumentMoniker": "db\\FalveyInsuranceGroupContext.cs",
+              "ToolTip": "C:\\GitHub\\falvey-claims-site\\db\\FalveyInsuranceGroupContext.cs",
+              "RelativeToolTip": "db\\FalveyInsuranceGroupContext.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAQwBYAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-05T18:45:04.197Z",
               "EditorCaption": ""
             }
           ]

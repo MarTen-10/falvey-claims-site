@@ -5,7 +5,7 @@ namespace FalveyInsuranceGroup.Backend.Dtos
     /// </summary>
     public class EmployeeDto
     {
-         /// <summary>
+        /// <summary>
         /// The unique identifier for employee
         /// </summary>
         public int? employee_id { get; set; }
@@ -18,7 +18,7 @@ namespace FalveyInsuranceGroup.Backend.Dtos
         public string? title { get; set; }
 
         public string? email { get; set; }
-        
+
         public string? phone { get; set; }
     }
 

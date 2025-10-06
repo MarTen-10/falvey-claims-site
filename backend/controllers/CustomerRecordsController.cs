@@ -61,7 +61,7 @@ namespace FalveyInsuranceGroup.Backend.Controllers
             var record = await _context.CustomerRecords
             .AsNoTracking()
             .Include(r => r.UploadedBy)
-            .FirstOrDefaultAsync(r => r.document_id == id);;
+            .FirstOrDefaultAsync(r => r.document_id == id); ;
 
             if (record == null)
             {
@@ -83,15 +83,18 @@ namespace FalveyInsuranceGroup.Backend.Controllers
         [HttpPost]
         public async Task<ActionResult<CustomerRecordDto>> addRecord(CustomerRecord record)
         {
-            if (!ModelState.IsValid) {
+            if (!ModelState.IsValid)
+            {
                 return ValidationProblem(ModelState);
             }
 
-            if (record.document_id.HasValue) {
+            if (record.document_id.HasValue)
+            {
                 return BadRequest("Record ID should not be provided on creation.");
             }
 
-            if (!hasValidRecordType(record.attached_to_type)) {
+            if (!hasValidRecordType(record.attached_to_type))
+            {
                 return BadRequest("Invalid type input");
             }
 
@@ -115,18 +118,21 @@ namespace FalveyInsuranceGroup.Backend.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult> updateRecord(int id, CustomerRecord updated_record)
         {
-            if (!ModelState.IsValid) {
+            if (!ModelState.IsValid)
+            {
                 return ValidationProblem(ModelState);
             }
 
-            if (!hasValidRecordType(updated_record.attached_to_type)) {
+            if (!hasValidRecordType(updated_record.attached_to_type))
+            {
                 return BadRequest("Invalid type input");
             }
 
             var existing_record = await _context.CustomerRecords.FindAsync(id);
 
             // Checks to see if customer record exists
-            if (existing_record == null) {
+            if (existing_record == null)
+            {
                 return NotFound($"Record with ID {id} not found");
             }
 
@@ -157,7 +163,8 @@ namespace FalveyInsuranceGroup.Backend.Controllers
         {
             var record = await _context.CustomerRecords.FindAsync(id);
 
-            if (record == null) {
+            if (record == null)
+            {
                 return NotFound($"Record with ID {id} not found");
             }
 
@@ -186,7 +193,7 @@ namespace FalveyInsuranceGroup.Backend.Controllers
                 description = r.description
             };
         }
-        
+
         /// <summary>
         /// Checks to see if a customer record object holds a valid record type
         /// </summary>

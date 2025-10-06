@@ -20,7 +20,7 @@ namespace FalveyInsuranceGroup.Backend.Controllers
         }
 
         /// GET: api/releases
-    
+
         /// <summary>
         /// Gets a list of releases
         /// </summary>
@@ -69,7 +69,7 @@ namespace FalveyInsuranceGroup.Backend.Controllers
             {
                 return ValidationProblem(ModelState);
             }
-            
+
             // Format is v[MAJOR].[MINOR].[PATCH]
             var version_regex = "^v\\d+\\.\\d+\\.\\d+$";
 
@@ -92,7 +92,7 @@ namespace FalveyInsuranceGroup.Backend.Controllers
 
 
         /// PUT: api/releases
-    
+
         /// <summary>
         ///  Updates an existing release by version
         /// </summary>
@@ -112,9 +112,10 @@ namespace FalveyInsuranceGroup.Backend.Controllers
             }
 
             var existing_release = await _context.Releases.FindAsync(id);
-            
+
             // Checks to see if release exists
-            if (existing_release == null) {
+            if (existing_release == null)
+            {
                 return NotFound($"Release with ID {id} not found");
             }
 

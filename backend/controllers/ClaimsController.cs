@@ -60,7 +60,8 @@ namespace FalveyInsuranceGroup.Backend.Controllers
             .Include(c => c.user_uploader)
             .FirstOrDefaultAsync(c => c.claim_id == id);
 
-            if (claim == null) {
+            if (claim == null)
+            {
                 return NotFound($"Claim with ID {id} not found");
             }
 
@@ -81,26 +82,31 @@ namespace FalveyInsuranceGroup.Backend.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult> updateClaim(int id, [FromBody] ClaimDto dto)
         {
-            if (!ModelState.IsValid) {
+            if (!ModelState.IsValid)
+            {
                 return ValidationProblem(ModelState);
             }
 
-            if (!hasValidStatus(dto.status)) {
+            if (!hasValidStatus(dto.status))
+            {
                 return BadRequest("Invalid status input");
             }
 
             // Ensures an existing policy is used
-            if (!await hasValidPolicy(dto.policy_id)) {
+            if (!await hasValidPolicy(dto.policy_id))
+            {
                 return BadRequest("The given policy ID does not exist");
             }
 
-            if (await hasDuplicateClaimNumber(dto.claim_number)) {
+            if (await hasDuplicateClaimNumber(dto.claim_number))
+            {
                 return BadRequest("The given claim number is already in use");
             }
 
             var claim = await _context.Claims.FindAsync(id);
 
-            if (claim == null) {
+            if (claim == null)
+            {
                 return NotFound($"Claim with ID {id} not found");
             }
 
@@ -132,11 +138,13 @@ namespace FalveyInsuranceGroup.Backend.Controllers
         [HttpPost]
         public async Task<ActionResult> addClaim([FromBody] ClaimDto dto)
         {
-            if (!ModelState.IsValid) {
+            if (!ModelState.IsValid)
+            {
                 return ValidationProblem(ModelState);
             }
 
-            if (dto.claim_id.HasValue) {
+            if (dto.claim_id.HasValue)
+            {
                 return BadRequest(new
                 {
                     error = "Claim ID should not be provided on creation",
@@ -146,16 +154,19 @@ namespace FalveyInsuranceGroup.Backend.Controllers
             }
 
             // Ensures if a given email is unique
-            if (await hasDuplicateClaimNumber(dto.claim_number)) {
+            if (await hasDuplicateClaimNumber(dto.claim_number))
+            {
                 return BadRequest("The given claim number is already in use");
             }
-             
+
             // Ensures an existing policy is given
-            if (!await hasValidPolicy(dto.policy_id)) {
+            if (!await hasValidPolicy(dto.policy_id))
+            {
                 return BadRequest("The given policy ID does not exist");
             }
 
-            if (!hasValidStatus(dto.status)) {
+            if (!hasValidStatus(dto.status))
+            {
                 return BadRequest("Invalid status input");
             }
 
@@ -194,7 +205,8 @@ namespace FalveyInsuranceGroup.Backend.Controllers
         {
             var claim = await _context.Claims.FindAsync(id);
 
-            if (claim == null) {
+            if (claim == null)
+            {
                 return NotFound($"Claim with ID {id} not found");
             }
 
