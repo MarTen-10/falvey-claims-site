@@ -1,0 +1,396 @@
+/* styles.css - Styles for Release Notes page
+   - Layout: two-column grid on wide screens (versions | details)
+   - Responsive: collapses to two/one-column on narrower screens
+   - Admin styles: small buttons for add/edit/delete actions when enabled
+*/
+
+/* Base page styles */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #f4f6f8;
+    color: #222;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header / top bar styles */
+header {
+    background: #0b63a5;
+    color: #fff;
+    padding: 1rem 2rem; /* slightly taller header in mock */
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Headings (shared spacing and weight) */
+h1, h2, h3 {
+    margin: 1.2rem 0 0.6rem 0;
+    font-weight: 600;
+}
+
+/* Main container: card-like shell which contains the two-column layout */
+main {
+    max-width: 1500px;
+    margin: 2rem auto;
+    background: #fff;
+    padding: 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    display: grid;
+    /* two columns: fixed narrow left (versions) and flexible right (details) */
+    grid-template-columns: 420px 1fr;
+    /* reasonable gap between columns */
+    gap: 24px;
+    overflow: hidden;
+    align-items: start;
+}
+
+/* Reset default list padding so our left-nav list aligns cleanly */
+ul {
+    padding-left: 0;
+}
+
+a {
+    color: #0078d4;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Default button styles used by page and admin actions */
+button {
+    background: #0078d4;
+    color: #fff;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+button:hover {
+    background: #005fa3;
+}
+
+/* ---------- Visual refinements to match mockups ---------- */
+
+/* Make form sections appear in light boxed panels like the mock */
+.panel {
+    background: #ffffff;
+    border: 1px solid #e6e9ee;
+    padding: 1rem;
+    border-radius: 6px;
+    box-shadow: 0 1px 0 rgba(16,24,40,0.02);
+    margin-bottom: 1rem;
+}
+
+/* Form controls (inputs, textarea, selects) */
+input[type="text"],
+input[type="date"],
+textarea,
+select,
+.version-select {
+    width: 100%;
+    padding: 0.6rem 0.75rem;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    background: #fff;
+    color: #222;
+    font-size: 0.95rem;
+    box-sizing: border-box;
+}
+
+textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+/* buttons: primary and cancel styles to match mock */
+.btn-primary {
+    background: #2b6cb0; /* stronger blue */
+    border: none;
+    color: #fff;
+    padding: 0.55rem 0.9rem;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 1px 0 rgba(16,24,40,0.04);
+}
+.btn-primary:hover { background: #245a95; }
+
+.btn-cancel {
+    background: #d9534f; /* red */
+    border: none;
+    color: #fff;
+    padding: 0.55rem 0.9rem;
+    border-radius: 4px;
+    margin-left: 0.5rem;
+}
+.btn-cancel:hover { background: #c63f39; }
+
+/* Small muted text */
+.muted { color: #6b7280; font-size: 0.95rem; }
+
+/* List of releases / hotfixes rendered as cards */
+.card-list { margin: 0; padding: 0; list-style: none; }
+.card-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: stretch;
+    border: 1px solid #e6e9ee;
+    border-radius: 6px;
+    padding: 0.9rem;
+    margin-bottom: 0.75rem;
+    background: #fff;
+}
+.card-item .card-body { flex: 1; }
+
+/* Footer that holds edit icon, Details button, and delete icon */
+.card-footer { display: flex; gap: 0.5rem; align-items: center; }
+.details-btn {
+    background: transparent;
+    border: 1px solid #d7e6f6;
+    color: #0078d4;
+    padding: 0.4rem 0.7rem;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.details-btn[aria-expanded="true"] { background: #e6f0fb; }
+/* card-footer .action-btn { order: 0; } */
+.card-actions { margin-left: auto; display: flex; gap: 0.4rem; align-items: center; }
+.card-footer .details-btn { order: 0; }
+.card-footer .action-btn.edit { order: 0; }
+.card-footer .action-btn.delete { order: 1; }
+.card-item .card-title { font-weight: 600; color: #111827; margin-bottom: 0.25rem; }
+.card-item .card-meta { color: #6b7280; font-size: 0.9rem; margin-bottom: 0.5rem; }
+
+/* Inline small action buttons for edit/delete */
+.action-btn {
+    background: transparent;
+    border: 1px solid transparent;
+    color: #6b7280;
+    padding: 0.3rem 0.45rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.action-btn:hover { background: #f3f4f6; color: #111827; }
+
+/* visually hide text labels for icon-only buttons while keeping them accessible */
+.action-btn .label {
+    position: absolute !important;
+    height: 1px; width: 1px;
+    overflow: hidden; clip: rect(1px,1px,1px,1px);
+}
+
+/* Left column tweaks: keep dropdown prominent */
+.versions { padding: 1.25rem; }
+
+.version-select {
+    display: block;
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1.25rem; /* increased gap between dropdown and Recent versions */
+    border-radius: 4px;
+    border: 1px solid #d7e6f6;
+    background: #fff;
+    color: #222;
+}
+/* Make details content feel like a form area */
+.details .panel-area { display: flex; flex-direction: column; gap: 1rem; }
+.details .panel .save-row { display: flex; gap: 0.5rem; margin-top: 0.5rem; }
+
+/* Adjust typography for headings inside details */
+#detailsTitle { font-size: 1.25rem; margin-bottom: 0.5rem; }
+
+/* Narrow the right-rail content visually */
+.right-rail { background: #fafafa; }
+
+/* Utility: full-width form row for date fields */
+.form-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+@media (max-width: 720px) { .form-row { grid-template-columns: 1fr; } }
+
+
+/* Version list and details styles */
+/* Left column (versions) styles */
+.versions {
+    background: #f7fbff;
+    border-right: 1px solid #e6eef8;
+    padding: 1rem;
+}
+
+.versions h2 {
+    margin: 0 0 0.75rem 0;
+    font-size: 1rem;
+}
+
+.versions ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.version-item + .version-item {
+    margin-top: 0.35rem;
+}
+
+/* Version button look: full-width, left-aligned text, blue accent */
+.version-btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border: none;
+    padding: 0.5rem 0.6rem;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #0078d4;
+    font-weight: 600;
+}
+
+.version-btn:hover,
+.version-btn[aria-expanded="true"] {
+    /* subtle highlight on hover or when selected */
+    background: #e6f0fb;
+}
+
+/* Center & right columns: the release details panel (stretches to the right) */
+/* Details panel padding (right column). The .save-row is hidden by default; JS shows it for admins. */
+.details { padding: 1.5rem 2rem; }
+.details .panel .save-row { display: none; gap: 0.5rem; margin-top: 0.5rem; }
+
+/* Removed unused right-rail styles (no right-rail in current layout) */
+
+.recent-heading {
+    margin-top: 0.75rem; /* breathe room between select and heading */
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+/* Row that holds the Recent versions heading and the Add button aligned right */
+.recent-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: space-between;
+}
+
+/* Version dropdown styles applied earlier */
+
+/* Admin control wrapper and small-green-button style */
+.admin-controls {
+    margin-top: 0.75rem;
+}
+
+.admin-controls .small {
+    background: #28a745;
+    padding: 0.4rem 0.6rem;
+    font-size: 0.9rem;
+}
+
+/* When admin controls are placed inline with the heading we don't want extra top margin */
+.recent-row .admin-controls { margin-top: 0; }
+
+/* Metadata (version/date) layout inside details */
+.details .meta {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+/* Notes box styling */
+.details .notes {
+    background: #fafafa;
+    padding: 1rem;
+    border-radius: 6px;
+    border: 1px solid #eee;
+}
+
+/* Ensure bullets have some left padding inside the notes area */
+.details .notes ul {
+    list-style-position: outside;
+    padding-left: 1.25rem;
+    margin: 0.25rem 0;
+}
+
+.visually-hidden {
+    position: absolute !important;
+    height: 1px; width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap;
+}
+
+/* Modal styles for Add/Edit release form */
+.modal { display: none; }
+.modal[aria-hidden="false"] { display: block; position: fixed; inset: 0; z-index: 1200; }
+.modal-backdrop { position: absolute; inset: 0; background: rgba(3,6,23,0.45); }
+.modal-panel { position: relative; width: min(720px, 96%); max-height: 90vh; overflow: auto; margin: 4vh auto; background: #fff; border-radius: 8px; padding: 1rem 1rem 1.25rem 1rem; box-shadow: 0 30px 60px rgba(2,6,23,0.4); border: 1px solid #e6edf5; }
+.modal-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid #eef3fb; }
+.modal-header h2 { margin: 0; font-size: 1.125rem; }
+.modal-panel label { display: block; font-weight: 600; margin-bottom: 0.35rem; }
+.modal-panel .form-row { margin-bottom: 0.75rem; }
+.modal-panel input[type="text"], .modal-panel input[type="date"], .modal-panel textarea { width: 100%; }
+.modal .action-btn { background: transparent; border: none; font-size: 1.05rem; color: #6b7280; }
+
+/* make modal content more compact on smaller screens */
+@media (max-width: 420px) {
+    .modal-panel { padding: 0.75rem; margin: 2vh 1vw; }
+}
+
+/* modal error / alert styles */
+.modal-error { color: #7f1d1d; background: #fff4f4; border: 1px solid #ffd2d2; padding: 0.5rem; border-radius: 4px; margin-bottom: 0.5rem; display: none; }
+.modal[aria-hidden="false"] .modal-error { display: block; }
+
+/* delete confirmation button flavors: keep Delete as red primary here */
+.btn-cancel.delete { background: #c53030; }
+.btn-primary.cancel-delete { background: #6b7280; }
+
+/* Responsive adjustments: single-column on small devices */
+@media (max-width: 920px) {
+    /* On medium screens stack to two columns: versions above details and right rail below */
+    main {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
+
+    .right-rail {
+        grid-column: 1 / 3;
+    }
+}
+
+@media (max-width: 720px) {
+    /* On small screens collapse to one column */
+    main {
+        grid-template-columns: 1fr;
+    }
+
+    /* make the versions area flow vertically and allow the select to appear */
+    .versions {
+        border-right: none;
+        border-bottom: 1px solid #e6eef8;
+        padding: 0.6rem;
+        overflow-x: auto;
+        display: block;
+    }
+
+    .version-btn {
+        white-space: nowrap;
+        padding: 0.5rem 0.75rem;
+    }
+
+    /* show select instead of horizontal strip on very small widths */
+    .version-select {
+        display: block;
+    }
+
+    .details {
+        padding: 1rem;
+    }
+}

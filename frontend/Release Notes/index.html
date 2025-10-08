@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Release Notes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Page header -->
+    <header>
+        <h1>Release Notes</h1>
+    </header>
+    <main class="release-notes">
+        <!-- LEFT COLUMN: versions/navigation
+             - Contains a dropdown and a recent versions list
+        -->
+        <section class="versions" aria-label="Release versions">
+            <h2 class="visually-hidden">Versions</h2>
+            <!-- Dropdown (populated by script) -->
+            <label for="versionSelect" class="visually-hidden">Select version</label>
+            <select id="versionSelect" class="version-select" aria-controls="details"></select>
+
+            <!-- Recent versions list (injected by script). Visible on larger screens below the dropdown -->
+            <div class="recent-row">
+                <h3 class="recent-heading">Recent versions</h3>
+
+                <!-- Admin controls: moved into the recent-heading row so the Add button is right-aligned -->
+                <div id="adminControls" class="admin-controls" aria-hidden="true">
+                    <button id="addReleaseBtn" class="small">Add Release</button>
+                </div>
+            </div>
+
+            <ul id="versionList" class="card-list">
+                <!-- Version items are rendered here by script -->
+            </ul>
+        </section>
+
+       <!-- RIGHT COLUMN: details panel
+           - Displays Title, Version, Upload Date and Detailed Notes
+       -->
+        <section class="details" id="details" tabindex="0" aria-live="polite">
+            <div class="panel">
+                <h2 id="detailsTitle">Select a version</h2>
+                <div class="meta">
+                    <div><strong>Version:</strong> <span id="detailsVersion">—</span></div>
+                    <div><strong>Upload Date:</strong> <time id="detailsDate">—</time></div>
+                </div>
+                <div class="panel-area">
+                    <article id="detailsNotes" class="notes panel">
+                        <p>Choose a version on the left to view release details.</p>
+                    </article>
+                    <div class="panel save-row">
+                        <!-- Replaced dynamically with Edit button for admins -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <!-- Modal for Add / Edit Release (hidden by default) -->
+    <div id="releaseModal" class="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modalTitle">
+        <div class="modal-backdrop" id="modalBackdrop"></div>
+        <div class="modal-panel" role="document">
+            <header class="modal-header">
+                <h2 id="modalTitle">Add Release</h2>
+                <button id="modalClose" class="action-btn" aria-label="Close modal">✕</button>
+            </header>
+            <div id="modalError" class="modal-error" role="alert" aria-live="assertive"></div>
+            <form id="releaseForm">
+                <input type="hidden" id="formMode" value="add">
+                <input type="hidden" id="originalVersion" value="">
+                <div class="form-row">
+                    <label for="releaseVersion">Version</label>
+                    <input id="releaseVersion" name="version" type="text" required>
+                </div>
+                <div class="form-row">
+                    <label for="releaseTitle">Title</label>
+                    <input id="releaseTitle" name="title" type="text" required>
+                </div>
+                <div class="form-row">
+                    <label for="releaseDate">Upload Date</label>
+                    <input id="releaseDate" name="date" type="date" required>
+                </div>
+                <div class="form-row">
+                    <label for="releaseNotes">Notes</label>
+                    <textarea id="releaseNotes" name="notes" placeholder="Use '-' to start list lines"></textarea>
+                </div>
+                <div class="panel save-row" style="margin-top:0.5rem;">
+                    <button type="submit" class="btn-primary" id="modalSave">Save</button>
+                    <button type="button" class="btn-cancel" id="modalCancel">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Delete confirmation modal -->
+    <div id="deleteModal" class="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="deleteModalTitle">
+        <div class="modal-backdrop" id="deleteBackdrop"></div>
+        <div class="modal-panel" role="document">
+            <header class="modal-header">
+                <h2 id="deleteModalTitle">Confirm delete</h2>
+                <button id="deleteModalClose" class="action-btn" aria-label="Close">✕</button>
+            </header>
+            <div class="panel">
+                <p id="deleteMessage">Are you sure you want to delete release <strong id="deleteVersionLabel"></strong>?</p>
+                <div style="display:flex; gap:0.5rem; margin-top:0.5rem;">
+                    <button id="confirmDeleteBtn" class="btn-cancel">Delete</button>
+                    <button id="cancelDeleteBtn" class="btn-primary">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js" defer></script>
+    <footer>
+        <p>&copy; 2025 Falvey Insurance Group. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
