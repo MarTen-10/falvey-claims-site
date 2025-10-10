@@ -81,17 +81,6 @@ namespace FalveyInsuranceGroup.Backend.Controllers
                 return BadRequest("Invalid inputs");
             }
 
-            // Ensures that ID is not provided
-            if (employee.employee_id.HasValue)
-            {
-                return BadRequest(new
-                {
-                    error = "Employee ID should not be provided on creation",
-                    errorCode = "INVALID_EMPLOYEE_CREATION",
-                    timestamp = DateTime.UtcNow
-                });
-            }
-
             // Ensures if a given email is unique
             if (employee.email != null)
             {
@@ -237,4 +226,5 @@ namespace FalveyInsuranceGroup.Backend.Controllers
 
     }
 }
+
 
