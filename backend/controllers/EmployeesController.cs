@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.JsonPatch;
 using FalveyInsuranceGroup.Backend.Dtos;
+using FalveyInsuranceGroup.Backend.Helpers;
 
 namespace FalveyInsuranceGroup.Backend.Controllers
 {
@@ -12,9 +13,13 @@ namespace FalveyInsuranceGroup.Backend.Controllers
     public class EmployeesController : ControllerBase
     {
         private readonly FalveyInsuranceGroupContext _context;
-        public EmployeesController(FalveyInsuranceGroupContext context)
+        private readonly InputService _service;
+        private static readonly string[] ALLOWED_STATUS = { "Active", "Inactive", "Leave", "Terminated" };
+        
+        public EmployeesController(FalveyInsuranceGroupContext context, InputService service)
         {
             _context = context;
+            _service = service;
         }
 
         /// GET: api/employees
@@ -57,7 +62,7 @@ namespace FalveyInsuranceGroup.Backend.Controllers
 
             if (employee == null)
             {
-                return NotFound(($"Employee with ID {id} not found"));
+                return NotFound();
             }
 
             return Ok(createEmployeeDto(employee));
@@ -76,18 +81,14 @@ namespace FalveyInsuranceGroup.Backend.Controllers
         public async Task<ActionResult<EmployeeDto>> addEmployee(Employee employee)
         {
             // Checks to see if all required inputs are provided
-            if (!ModelState.IsValid || !hasValidStatus(employee.status))
+            if (!_service.hasValidEnumType(ALLOWED_STATUS, employee.status))
             {
-                return BadRequest("Invalid inputs");
+                return BadRequest("Invalid status input");
             }
 
             // Ensures if a given email is unique
-            if (employee.email != null)
-            {
-                if (hasDuplicateEmail(employee.email))
-                {
-                    return BadRequest("The given email is already in use");
-                }
+            if (await _service.hasDuplicateEmail<Employee>(employee.email)) {
+                return BadRequest("The given email is already in use");
             }
 
             _context.Employees.Add(employee);
@@ -112,29 +113,19 @@ namespace FalveyInsuranceGroup.Backend.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult> updateEmployee(int id, Employee updated_employee)
         {
-            if (!ModelState.IsValid)
-            {
-                return ValidationProblem(ModelState);
-            }
 
-            if (!hasValidStatus(updated_employee.status))
-            {
+            if (!_service.hasValidEnumType(ALLOWED_STATUS, updated_employee.status)) {
                 return BadRequest("Invalid status input");
             }
 
             // Ensures if a given email is unique
-            if (updated_employee.email != null)
-            {
-                if (hasDuplicateEmail(updated_employee.email))
-                {
-                    return BadRequest("The given email is already in use");
-                }
+            if (await _service.hasDuplicateEmail<Employee>(updated_employee.email)) {
+                return BadRequest("The given email is already in use");
             }
 
             var existing_employee = await _context.Employees.FindAsync(id);
 
-            if (existing_employee == null)
-            {
+            if (existing_employee == null) {
                 return NotFound($"Employee with {id} not found");
             }
 
@@ -163,8 +154,7 @@ namespace FalveyInsuranceGroup.Backend.Controllers
         {
             var employee = await _context.Employees.FindAsync(id);
 
-            if (employee == null)
-            {
+            if (employee == null) {
                 return NotFound($"Employee with {id} not found");
             }
 
@@ -191,40 +181,8 @@ namespace FalveyInsuranceGroup.Backend.Controllers
             };
         }
 
-        /// <summary>
-        /// Checks to see if an employee object holds a valid status
-        /// </summary>
-        /// <param name="status">The status of the employee</param>
-        /// <returns>
-        ///     True - Has a valid status
-        ///     False - Has an invalid status
-        /// </returns>
-        private bool hasValidStatus(string status)
-        {
-            string[] allowed_status = { "Active", "Inactive", "Leave", "Terminated" };
-
-            return allowed_status.Contains(status);
-        }
-
-        /// <summary>
-        ///  Checks to see if an employee has a duplicate email
-        /// </summary>
-        /// <param name="new_email">The email to check</param>
-        /// <returns>
-        ///     True - has a duplicate email
-        ///     False - Has a unique email
-        /// </returns>
-        private Boolean hasDuplicateEmail(string new_email)
-        {
-            // Assigns a IQueryable that contains employees with the same email
-            // Assigns an empty IQueryable when there are no same emails found
-            var entity_with_email = _context.Employees.Where(e => e.email == new_email);
-
-            // Checks to see if IQueryable is empty
-            return entity_with_email.Any();
-        }
-
     }
 }
+
 
 
