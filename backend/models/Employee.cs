@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using FalveyProject.Backend.Filters;
 
 namespace FalveyInsuranceGroup.Backend.Models
 {
@@ -14,6 +15,7 @@ namespace FalveyInsuranceGroup.Backend.Models
         /// The unique identifier for employee
         /// </summary>
         [Key]
+        [RequiredNull(ErrorMessage = "ERROR: Employee ID should not be provided on creation")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int? employee_id { get; set; }
 
@@ -52,3 +54,4 @@ namespace FalveyInsuranceGroup.Backend.Models
         public DateTime created_at { get; set; } = DateTime.Now;
     }
 }
+
