@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace FalveyInsuranceGroup.backend.filters
+namespace FalveyInsuranceGroup.Backend.Filters
 {
     public class RequiredNullAttribute : ValidationAttribute
     {
@@ -23,3 +23,4 @@ namespace FalveyInsuranceGroup.backend.filters
     }
 
 }
+
