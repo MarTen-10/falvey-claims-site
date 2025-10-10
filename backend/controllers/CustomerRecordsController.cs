@@ -3,7 +3,7 @@ using FalveyInsuranceGroup.Db;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using FalveyInsuranceGroup.Backend.Dtos;
-using FalveyInsuranceGroup.Backend.Helpers
+using FalveyInsuranceGroup.Backend.Helpers;
 
 namespace FalveyInsuranceGroup.Backend.Controllers
 {
