@@ -1,8 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using FalveyProject.Backend.Filters;
 using System.Numerics;
 using System.Text.Json.Serialization;
 using System.Xml.Linq;
+
 
 namespace FalveyInsuranceGroup.Backend.Models
 {
@@ -17,6 +19,7 @@ namespace FalveyInsuranceGroup.Backend.Models
         /// </summary>
         [Key]
         [Column("document_id")]
+        [RequiredNull(ErrorMessage = "ERROR: Document ID should not be provided on creation")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int? document_id { get; set; }
 
