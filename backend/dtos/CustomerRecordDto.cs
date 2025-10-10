@@ -1,3 +1,4 @@
+using FalveyProject.Backend.Filters;
 namespace FalveyInsuranceGroup.Backend.Dtos
 {
     /// <summary>
@@ -8,6 +9,7 @@ namespace FalveyInsuranceGroup.Backend.Dtos
         /// <summary>
         /// The required unique identifier for document
         /// </summary>
+        [RequiredNull(ErrorMessage = "ERROR: Document ID should not be provided on creation")]
         public int? document_id { get; set; }
         public required string file_name { get; set; }
         public required string url { get; set; }
