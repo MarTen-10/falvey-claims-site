@@ -82,10 +82,6 @@ namespace FalveyInsuranceGroup.Backend.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult> updateClaim(int id, [FromBody] ClaimDto dto)
         {
-            if (!ModelState.IsValid)
-            {
-                return ValidationProblem(ModelState);
-            }
 
             if (!hasValidStatus(dto.status))
             {
@@ -138,21 +134,6 @@ namespace FalveyInsuranceGroup.Backend.Controllers
         [HttpPost]
         public async Task<ActionResult> addClaim([FromBody] ClaimDto dto)
         {
-            if (!ModelState.IsValid)
-            {
-                return ValidationProblem(ModelState);
-            }
-
-            if (dto.claim_id.HasValue)
-            {
-                return BadRequest(new
-                {
-                    error = "Claim ID should not be provided on creation",
-                    errorCode = "INVALID_CLAIM_CREATION",
-                    timestamp = DateTime.UtcNow
-                });
-            }
-
             // Ensures if a given email is unique
             if (await hasDuplicateClaimNumber(dto.claim_number))
             {
@@ -306,5 +287,6 @@ namespace FalveyInsuranceGroup.Backend.Controllers
 
 
     }
+
 
 }
