@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using FalveyInsuranceGroup.Db;
 using FalveyInsuranceGroup.Backend.Models;
-using System.Text.RegularExpressions;
+using FalveyInsuranceGroup.Backend.Helpers;
 
 namespace FalveyInsuranceGroup.Backend.Controllers
 {
@@ -14,13 +14,16 @@ namespace FalveyInsuranceGroup.Backend.Controllers
     public class ReleasesController : ControllerBase
     {
         private readonly FalveyInsuranceGroupContext _context;
-        public ReleasesController(FalveyInsuranceGroupContext context)
+        private readonly InputService _service;
+        
+        public ReleasesController(FalveyInsuranceGroupContext context, InputService service)
         {
             _context = context;
+            _service = service;
         }
 
         /// GET: api/releases
-
+    
         /// <summary>
         /// Gets a list of releases
         /// </summary>
@@ -65,16 +68,9 @@ namespace FalveyInsuranceGroup.Backend.Controllers
         [HttpPost]
         public async Task<ActionResult<Release>> addRelease(Release release)
         {
-            if (!ModelState.IsValid)
-            {
-                return ValidationProblem(ModelState);
-            }
-
-            // Format is v[MAJOR].[MINOR].[PATCH]
-            var version_regex = "^v\\d+\\.\\d+\\.\\d+$";
-
+            
             // Checks to see if release version follows Semantic Versioning 
-            if (!Regex.IsMatch(version_regex, release.version))
+            if (!_service.hasValidVersion(release.version))
             {
                 return BadRequest(new
                 {
@@ -92,7 +88,7 @@ namespace FalveyInsuranceGroup.Backend.Controllers
 
 
         /// PUT: api/releases
-
+    
         /// <summary>
         ///  Updates an existing release by version
         /// </summary>
@@ -105,17 +101,10 @@ namespace FalveyInsuranceGroup.Backend.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult> updateRelease(string id, Release updated_release)
         {
-
-            if (!ModelState.IsValid)
-            {
-                return ValidationProblem(ModelState);
-            }
-
             var existing_release = await _context.Releases.FindAsync(id);
-
+            
             // Checks to see if release exists
-            if (existing_release == null)
-            {
+            if (existing_release == null) {
                 return NotFound($"Release with ID {id} not found");
             }
 
@@ -155,5 +144,6 @@ namespace FalveyInsuranceGroup.Backend.Controllers
             return NoContent();
         }
     }
+
 
 }
