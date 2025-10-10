@@ -83,16 +83,6 @@ namespace FalveyInsuranceGroup.Backend.Controllers
         [HttpPost]
         public async Task<ActionResult<CustomerRecordDto>> addRecord(CustomerRecord record)
         {
-            if (!ModelState.IsValid)
-            {
-                return ValidationProblem(ModelState);
-            }
-
-            if (record.document_id.HasValue)
-            {
-                return BadRequest("Record ID should not be provided on creation.");
-            }
-
             if (!hasValidRecordType(record.attached_to_type))
             {
                 return BadRequest("Invalid type input");
@@ -118,11 +108,6 @@ namespace FalveyInsuranceGroup.Backend.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult> updateRecord(int id, CustomerRecord updated_record)
         {
-            if (!ModelState.IsValid)
-            {
-                return ValidationProblem(ModelState);
-            }
-
             if (!hasValidRecordType(updated_record.attached_to_type))
             {
                 return BadRequest("Invalid type input");
