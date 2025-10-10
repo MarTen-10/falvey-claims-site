@@ -48,8 +48,7 @@ namespace FalveyInsuranceGroup.Backend.Controllers
         {
             var release = await _context.Releases.FindAsync(id);
 
-            if (release == null)
-            {
+            if (release == null) {
                 return NotFound($"Release with ID {id} not found");
             }
 
@@ -70,8 +69,7 @@ namespace FalveyInsuranceGroup.Backend.Controllers
         {
             
             // Checks to see if release version follows Semantic Versioning 
-            if (!_service.hasValidVersion(release.version))
-            {
+            if (!_service.hasValidVersion(release.version)) {
                 return BadRequest(new
                 {
                     error = "Version number is formatted incorrectly",
@@ -133,8 +131,7 @@ namespace FalveyInsuranceGroup.Backend.Controllers
         {
             var release = await _context.Releases.FindAsync(id);
 
-            if (release == null)
-            {
+            if (release == null) {
                 return NotFound($"Release with ID {id} not found");
             }
 
@@ -147,3 +144,4 @@ namespace FalveyInsuranceGroup.Backend.Controllers
 
 
 }
+
