@@ -2,8 +2,8 @@ using FalveyInsuranceGroup.Backend.Models;
 using FalveyInsuranceGroup.Db;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.JsonPatch;
 using FalveyInsuranceGroup.Backend.Dtos;
+using FalveyInsuranceGroup.Backend.Helpers
 
 namespace FalveyInsuranceGroup.Backend.Controllers
 {
@@ -12,10 +12,13 @@ namespace FalveyInsuranceGroup.Backend.Controllers
     public class CustomerRecordsController : ControllerBase
     {
         private readonly FalveyInsuranceGroupContext _context;
+        private readonly InputService _service;
+       private static readonly string[] ALLOWED_TYPES = { "Customer", "Policy", "Claim" };
 
-        public CustomerRecordsController(FalveyInsuranceGroupContext context)
+        public CustomerRecordsController(FalveyInsuranceGroupContext context, InputService service)
         {
             _context = context;
+            _service = service;
         }
 
         /// GET: api/customerrecords
@@ -25,18 +28,18 @@ namespace FalveyInsuranceGroup.Backend.Controllers
         /// </summary>
         /// <returns>A list of records</returns>
         [HttpGet]
-        public async Task<ActionResult<List<CustomerRecordDto>>> getCustomerRecord()
+        public async Task<ActionResult<List<CustomerRecordDto>>> getRecords()
         {
             var records = await _context.CustomerRecords
             .AsNoTracking()
-            .Include(r => r.UploadedBy)
+            .Include(r => r.employee_uploader)
             .Select(r => new CustomerRecordDto
             {
                 document_id = r.document_id,
                 file_name = r.file_name,
                 url = r.url,
                 uploaded_by = r.uploaded_by,
-                uploaded_by_name = r.UploadedBy != null ? r.UploadedBy.name : null,
+                uploaded_by_name = r.employee_uploader != null ? r.employee_uploader.name : null,
                 uploaded_at = r.uploaded_at,
                 attached_to_type = r.attached_to_type,
                 description = r.description
@@ -60,8 +63,8 @@ namespace FalveyInsuranceGroup.Backend.Controllers
         {
             var record = await _context.CustomerRecords
             .AsNoTracking()
-            .Include(r => r.UploadedBy)
-            .FirstOrDefaultAsync(r => r.document_id == id); ;
+            .Include(r => r.employee_uploader)
+            .FirstOrDefaultAsync(r => r.document_id == id);;
 
             if (record == null)
             {
@@ -83,8 +86,7 @@ namespace FalveyInsuranceGroup.Backend.Controllers
         [HttpPost]
         public async Task<ActionResult<CustomerRecordDto>> addRecord(CustomerRecord record)
         {
-            if (!hasValidRecordType(record.attached_to_type))
-            {
+             if (!_service.hasValidEnumType(ALLOWED_TYPES, record.attached_to_type)) {
                 return BadRequest("Invalid type input");
             }
 
@@ -108,16 +110,14 @@ namespace FalveyInsuranceGroup.Backend.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult> updateRecord(int id, CustomerRecord updated_record)
         {
-            if (!hasValidRecordType(updated_record.attached_to_type))
-            {
+            if (!_service.hasValidEnumType(ALLOWED_TYPES, updated_record.attached_to_type)) {
                 return BadRequest("Invalid type input");
             }
 
             var existing_record = await _context.CustomerRecords.FindAsync(id);
 
             // Checks to see if customer record exists
-            if (existing_record == null)
-            {
+            if (existing_record == null) {
                 return NotFound($"Record with ID {id} not found");
             }
 
@@ -148,8 +148,7 @@ namespace FalveyInsuranceGroup.Backend.Controllers
         {
             var record = await _context.CustomerRecords.FindAsync(id);
 
-            if (record == null)
-            {
+            if (record == null) {
                 return NotFound($"Record with ID {id} not found");
             }
 
@@ -172,26 +171,11 @@ namespace FalveyInsuranceGroup.Backend.Controllers
                 file_name = r.file_name,
                 url = r.url,
                 uploaded_by = r.uploaded_by,
-                uploaded_by_name = r.UploadedBy != null ? r.UploadedBy.name : null,
+                uploaded_by_name = r.employee_uploader != null ? r.employee_uploader.name : null,
                 uploaded_at = r.uploaded_at,
                 attached_to_type = r.attached_to_type,
                 description = r.description
             };
-        }
-
-        /// <summary>
-        /// Checks to see if a customer record object holds a valid record type
-        /// </summary>
-        /// <param name="record_type">The record type</param>
-        /// <returns>
-        ///     True - Has a valid record
-        ///     False - Has an invalid record type
-        /// </returns>
-        private bool hasValidRecordType(string status)
-        {
-            string[] allowed_types = { "Customer", "Policy", "Claim" };
-
-            return allowed_types.Contains(status);
         }
 
     }
