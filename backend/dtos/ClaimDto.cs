@@ -8,6 +8,7 @@ namespace FalveyInsuranceGroup.Backend.Dtos
         /// <summary>
         /// The required unique identifier for a claim
         /// </summary>
+        [RequiredNull(ErrorMessage = "ERROR: Claim ID should not be provided on creation")]
         public int? claim_id { get; set; }
 
         /// <summary>
@@ -51,5 +52,6 @@ namespace FalveyInsuranceGroup.Backend.Dtos
 
         public DateTime created_at { get; set; }
     }
+
 
 }
