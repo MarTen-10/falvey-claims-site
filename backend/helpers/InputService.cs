@@ -9,8 +9,8 @@ namespace FalveyInsuranceGroup.Backend.Helpers
 {
     public class InputService
     {
-        private readonly BaseContext _context;
-        public InputService(BaseContext context)
+        private readonly FalveyInsuranceGroupContext _context;
+        public InputService(FalveyInsuranceGroupContext context)
         {
             _context = context;
         }
@@ -112,4 +112,5 @@ namespace FalveyInsuranceGroup.Backend.Helpers
         }
 
     }
+
 }
