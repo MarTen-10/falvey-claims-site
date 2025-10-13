@@ -40,7 +40,7 @@ namespace FalveyInsuranceGroup.Backend.Models
         /// Navigation property to the employee who uploaded the record
         /// </summary>
         [ForeignKey("uploaded_by")]
-        public Employee? UploadedBy { get; set; }
+        public Employee? employee_uploader { get; set; }
 
         [Column("uploaded_at")]
         public DateTime uploaded_at { get; set; } = DateTime.Now;
