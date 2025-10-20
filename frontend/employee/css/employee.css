@@ -1,0 +1,186 @@
+
+/* ======================================================================
+   Falvey Claims — Employee Portal
+   File: employee.css
+   Scope: Dashboard, Clients, Client Workspace, Map, Reports
+   ======================================================================
+   01) Theme & Base
+   02) Layout
+   03) Typography & Utilities
+   04) Cards, Grids, Sections
+   05) Buttons, Inputs, Chips, Badges, Switch
+   06) Lists & Tables
+   07) Tabs (CSS-only)
+   08) Modals (CSS-only)
+   09) Drawer (CSS-only)
+   10) Uploader (visual only)
+   11) Map (mini & full)
+   12) Clients page layout (split view)
+   13) Memos (Resources tab)
+   14) Timeline & Tasks
+   15) Skeletons & Empty States
+   ==================================================================== */
+
+/* === 01) THEME & BASE === */
+:root{
+  --bg:#f5f7fb; --surface:#ffffff; --text:#111827; --muted:#6b7280; --line:#e5eaf3;
+  --primary:#2563eb; --primary-600:#1d4ed8; --success:#16a34a; --warn:#d97706; --danger:#dc2626;
+  --radius:14px; --shadow:0 10px 30px rgba(17,24,39,.08);
+  --s1:8px; --s2:12px; --s3:16px; --s4:20px; --s5:24px; --s6:32px;
+}
+*{box-sizing:border-box} html,body{margin:0;padding:0}
+body{font-family:Inter, ui-sans-serif, -apple-system, Segoe UI, Roboto, Arial, sans-serif;color:var(--text);background:var(--bg)}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--primary); outline-offset:2px}
+
+/* === 02) LAYOUT === */
+.sidebar{position:fixed; inset:0 auto 0 0; width:240px; background:var(--surface); border-right:1px solid var(--line); padding:var(--s5) var(--s4); display:flex; flex-direction:column; gap:var(--s5)}
+.brand{display:flex; align-items:center; gap:10px; font-weight:800}
+.brand-badge{width:32px;height:32px;border-radius:10px;background:#eef2ff;color:#1d4ed8;display:flex;align-items:center;justify-content:center;font-weight:800}
+.nav{display:flex;flex-direction:column;gap:8px}
+.nav a{padding:10px 12px;border-radius:10px;color:#334155}
+.nav a:hover{background:#f3f6ff}
+.nav a.active{background:#eef2ff;color:#1d4ed8}
+.role{margin-top:auto;color:var(--muted);font-size:12px}
+.main{margin-left:240px; min-height:100vh; display:flex; flex-direction:column}
+.topbar{position:sticky; top:0; z-index:10; background:var(--surface); border-bottom:1px solid var(--line); display:flex; align-items:center; gap:10px; padding:var(--s4) var(--s5)}
+.footer{margin-top:auto; padding:var(--s4) var(--s5); color:var(--muted); font-size:12px; border-top:1px solid var(--line); background:var(--surface)}
+
+/* === 03) TYPOGRAPHY & UTILS === */
+h1,h2{margin:0 0 var(--s3)} h1{font-size:26px} h2{font-size:18px}
+.wrap{padding:var(--s5)}
+.section{margin-bottom:var(--s6)}
+.sub{color:var(--muted); font-size:13px; margin-top:4px}
+.sep{height:1px; background:var(--line); margin:16px 0}
+.hidden{display:none}
+.vstack{display:flex;flex-direction:column;gap:12px}
+.hstack{display:flex;align-items:center;gap:10px}
+
+/* === 04) CARDS & GRIDS === */
+.card{background:var(--surface); border-radius:var(--radius); box-shadow:var(--shadow); padding:var(--s5)}
+.card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.card-title{font-weight:600}
+.card-actions{display:flex;gap:8px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s3)}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s3)}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3)}
+@media (max-width:1100px){ .grid{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:700px){ .grid,.grid-2,.grid-3{grid-template-columns:1fr} }
+.stat .label{color:var(--muted);font-size:13px;margin-bottom:6px}
+.stat .value{font-size:28px;font-weight:800}
+.progress{height:10px;background:#eef2ff;border-radius:999px;overflow:hidden}
+.progress .bar{height:100%;background:var(--primary);width:50%}
+
+/* === 05) CONTROLS === */
+.search{flex:1; padding:10px 12px; border:1px solid var(--line); border-radius:12px; background:#fff}
+.input, textarea.input, select.input{width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:12px; background:#fff}
+.select{padding:10px 12px; border:1px solid var(--line); border-radius:12px; background:#fff}
+.btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:10px 14px; border:1px solid var(--line); border-radius:12px; background:#fff; cursor:pointer}
+.btn:hover{background:#f8fafc}
+.btn-outline{background:transparent}
+.btn.primary{background:var(--primary); color:#fff; border-color:var(--primary)}
+.btn.primary:hover{background:var(--primary-600)}
+.pills{display:flex; flex-wrap:wrap; gap:8px; margin:12px 0 18px}
+.pill{padding:6px 10px; border:1px solid var(--line); border-radius:999px; background:#fff; font-size:13px; color:#334155}
+.pill.is-active{background:#eef2ff; color:#1d4ed8; border-color:#c9d5ff}
+.badge{display:inline-flex; align-items:center; gap:6px; padding:4px 8px; border-radius:999px; font-size:12px}
+.badge.green{background:#e8f7ee; color:#116b2a}
+.badge.amber{background:#fff3df; color:#82550a}
+.badge.red{background:#ffe7e7; color:#8a1821}
+.badge.blue{background:#e8f0ff; color:#183b8a}
+.switch{display:inline-flex; align-items:center; gap:8px; font-size:13px}
+.switch input{appearance:none; width:38px;height:22px;border-radius:999px;background:#cbd5e1;position:relative;outline:none;cursor:pointer}
+.switch input:before{content:""; position:absolute; left:2px; top:2px; width:18px;height:18px;background:#fff;border-radius:50%; transition:all .2s}
+.switch input:checked{background:#60a5fa}
+.switch input:checked:before{left:18px}
+
+/* === 06) LISTS & TABLES === */
+.list{display:flex;flex-direction:column}
+.list .row{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid var(--line)}
+.list .row:last-child{border-bottom:0}
+.list .dot{width:8px;height:8px;border-radius:50%;background:#cbd5e1}
+.list .time{margin-left:auto;color:var(--muted);font-size:12px}
+.table{width:100%;border-collapse:collapse}
+.table th,.table td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:left;font-size:14px}
+.table thead th{background:var(--surface);position:sticky;top:0;z-index:1}
+.table.compact th,.table.compact td{padding:10px 8px}
+.table.dense th,.table.dense td{padding:6px 6px; font-size:13px}
+.table-wrap{overflow:auto; border:1px solid var(--line); border-radius:12px}
+.th-sort{display:inline-flex; gap:6px; align-items:center}
+.sort-ind{font-size:12px; color:var(--muted)}
+.table-foot{display:flex;align-items:center;justify-content:space-between;padding:10px 6px;color:#334155}
+.pagination{display:flex;gap:8px;align-items:center}
+.pagination .page{padding:6px 10px;border:1px solid var(--line);border-radius:10px}
+.pagination .page.is-active{background:#eef2ff;border-color:#c9d5ff;color:#1d4ed8}
+
+/* === 07) TABS === */
+.tabs{display:flex; gap:10px; border-bottom:1px solid var(--line); margin:16px 0}
+.tab{padding:10px 12px; border-radius:10px 10px 0 0; color:#334155}
+.tab.is-active{background:#fff; border:1px solid var(--line); border-bottom-color:#fff}
+.tab-panel{display:none; margin-top:16px}
+.tab-panel.is-active{display:block}
+:target.tab-panel{display:block}
+:target.tab-panel ~ .tab-panel{display:none}
+
+/* === 08) MODALS (:target) === */
+.modal{position:fixed; inset:0; display:none}
+.modal:target{display:block}
+.modal-backdrop{position:absolute; inset:0; background:rgba(2,6,23,.45); backdrop-filter: blur(2px)}
+.modal-dialog{position:relative; max-width:720px; width:calc(100% - 32px); margin:10vh auto; background:var(--surface); border-radius:14px; box-shadow:var(--shadow); padding:24px}
+.modal-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:12px}
+.modal-close{padding:6px 10px; border-radius:8px}
+
+/* === 09) DRAWER (checkbox hack) === */
+.drawer-toggle{position:absolute; opacity:0; pointer-events:none}
+.drawer{position:fixed; right:-420px; top:64px; width:380px; height:calc(100vh - 84px); background:var(--surface); border-left:1px solid var(--line); box-shadow:var(--shadow); padding:16px; transition:right .25s ease; z-index:20}
+.drawer-header{display:flex; align-items:center; justify-content:space-between; margin-bottom:8px}
+.drawer-content{overflow:auto; height:calc(100% - 40px)}
+.drawer-toggle:checked + .drawer{right:0}
+
+/* === 10) UPLOADER (visual only) === */
+.upload{border:1px dashed #c9d5ff; border-radius:12px; background:linear-gradient(180deg,#eef2ff,#f6f8ff); padding:16px}
+.upload-zone{border:1px solid var(--line); background:#fff; border-radius:12px; padding:14px; text-align:center; color:#334155}
+
+/* === 11) MAP (mini & full) === */
+.map-canvas{height:220px;background:linear-gradient(180deg,#eef2ff,#f6f8ff); border:1px dashed #c9d5ff; border-radius:12px}
+.legend{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+.legend-row{display:flex; align-items:center; gap:6px; font-size:13px; color:#334155}
+.pin{width:10px;height:10px;border-radius:50%}
+.pin-blue{background:#60a5fa}
+.pin-amber{background:#f59e0b}
+.pin-red{background:#ef4444}
+.map-page .topbar{padding:12px 20px}
+.toolbar{display:flex; gap:12px; width:100%; align-items:center; justify-content:space-between}
+.map-full{position:relative;height: calc(100vh - 120px); margin: 0 20px 20px;}
+.map-canvas-full{position:absolute; inset:0; background:repeating-linear-gradient(45deg,#eef2ff,#eef2ff 10px,#f6f8ff 10px,#f6f8ff 20px); border:1px dashed #c9d5ff; border-radius:14px}
+.map-legend{position:absolute; top:16px; left:16px; padding:12px; border-radius:12px}
+.map-sheet{position:absolute; right:16px; bottom:16px; width:320px; padding:16px; border-radius:12px}
+
+/* === 12) CLIENTS PAGE LAYOUT === */
+.split{display:grid; grid-template-columns: 1.8fr 1fr; gap: var(--s3)}
+@media (max-width:1100px){ .split{grid-template-columns:1fr} .map-pane{order:-1} }
+.pane{}
+.map-pane .sticky{position:sticky; top:84px}
+.subcard{margin-top:var(--s3)}
+
+/* === 13) MEMOS === */
+.memos{display:flex; flex-direction:column; gap:16px}
+.memo{border:1px solid var(--line); border-radius:12px; padding:14px; background:#fff}
+.memo-head{display:flex; align-items:flex-start; justify-content:space-between; gap:12px; margin-bottom:8px}
+.memo-title{font-weight:600}
+.memo-meta{font-size:12px; color:var(--muted)}
+.memo-actions{display:flex; gap:8px}
+.memo-body{margin:0}
+
+/* === 14) TIMELINE & TASKS === */
+.timeline{position:relative; padding-left:22px}
+.timeline:before{content:""; position:absolute; left:9px; top:0; bottom:0; width:2px; background:#e5eaf3}
+.timeline-item{position:relative; padding:8px 0}
+.timeline-item:before{content:""; position:absolute; left:3px; top:12px; width:12px;height:12px;border-radius:50%;background:#cbd5e1;border:2px solid #fff;box-shadow:0 0 0 2px #cbd5e1}
+.timeline-item .when{font-size:12px;color:var(--muted)}
+.timeline-item .what{font-weight:600}
+
+/* === 15) SKELETONS & EMPTY === */
+.skeleton{background:linear-gradient(90deg,#eef2f9 25%, #f6f8ff 37%, #eef2f9 63%); background-size:400% 100%; animation:shimmer 1.4s ease infinite}
+@keyframes shimmer{0%{background-position:100% 0}100%{background-position:0 0}}
+.empty{padding:24px; text-align:center; color:#64748b; border:1px dashed #cbd5e1; border-radius:12px}

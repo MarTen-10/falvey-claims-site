@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Employee • Reports — Falvey Claims</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="../css/employee.css" />
+</head>
+<body>
+  <!-- sidebar nav for hub -->
+  <aside class="sidebar">
+    <div class="brand"><span class="brand-badge">F</span><span>Falvey</span></div>
+    <nav class="nav">
+      <a href="./dashboard.html">Dashboard</a>
+      <a href="./clients.html">Clients</a>
+      <a href="./map.html">Map</a>
+      <a class="active" href="./reports.html">Reports</a>
+    </nav>
+    <div class="role">Signed in as: Employee</div>
+  </aside>
+
+  <!-- reports layout -->
+  <main class="main">
+    <header class="topbar">
+      <input class="search" type="search" placeholder="Search releases, tools…" />
+      <button class="btn">Search</button>
+      <div class="avatar">MB</div>
+    </header>
+
+    <div class="wrap">
+      <section class="section">
+        <h1>Reports & Releases</h1>
+        <p class="sub">Click a release to view details. <strong>Admins can add new releases</strong> with target/completion dates and hotfix lists in the Admin portal.</p>
+
+        <div class="grid-2">
+          <!-- left list -->
+          <div class="card">
+            <div class="card-head">
+              <div class="card-title">Available Releases</div>
+              <div class="card-actions">
+                <select class="select"><option>All years</option><option>2025</option><option>2024</option></select>
+                <select class="select"><option>All types</option><option>Feature</option><option>Hotfix</option></select>
+              </div>
+            </div>
+
+            <div id="releases-list" class="release-list">
+              <div class="release-group">
+                <div class="release-month">June 2025</div>
+                <a class="release-item" href="#r-2025-06-15" data-release-id="2025-06-15"><div class="release-title">v1.12 — Map & Client Workspace polish</div><div class="release-meta">15 Jun 2025 • 3 hotfixes</div></a>
+                <a class="release-item" href="#r-2025-06-01" data-release-id="2025-06-01"><div class="release-title">v1.11 — Reports section revamp</div><div class="release-meta">01 Jun 2025 • 2 hotfixes</div></a>
+              </div>
+              <div class="release-group">
+                <div class="release-month">May 2025</div>
+                <a class="release-item" href="#r-2025-05-20" data-release-id="2025-05-20"><div class="release-title">v1.10 — Client memos & uploader</div><div class="release-meta">20 May 2025 • 4 hotfixes</div></a>
+                <a class="release-item" href="#r-2025-05-02" data-release-id="2025-05-02"><div class="release-title">v1.9 — SLA indicators & filters</div><div class="release-meta">02 May 2025 • 1 hotfix</div></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- right highlights -->
+          <aside class="card">
+            <div class="card-head"><div class="card-title">Highlights</div></div>
+            <ul class="list" style="list-style:none; padding:0; margin:0">
+              <li class="row"><span class="dot"></span><span>Map page now supports full viewport preview.</span></li>
+              <li class="row"><span class="dot"></span><span>Client workspace added memo editing (front-end).</span></li>
+              <li class="row"><span class="dot"></span><span>Accessibility pass on buttons and tabs.</span></li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+    </div>
+
+    <footer class="footer"><span>© 2025 Falvey Insurance Group — Student Project</span></footer>
+  </main>
+
+  <!-- modals for each release -->
+  <div id="r-2025-06-15" class="modal" aria-hidden="true">
+    <a href="#" class="modal-backdrop" aria-label="Close"></a>
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="rel-0615">
+      <div class="modal-head"><h2 id="rel-0615">Release v1.12 — Map & Client Workspace polish</h2><a class="modal-close" href="#" aria-label="Close">✕</a></div>
+      <div class="vstack">
+        <div><strong>Target date:</strong> 15 Jun 2025</div><div><strong>Completion date:</strong> 16 Jun 2025</div><div class="sep"></div>
+        <div><strong>Hotfixes</strong></div>
+        <ul><li>Map pins alignment improved</li><li>Memo modal spacing adjusted</li><li>Uploader visual drag-state fixed</li></ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="r-2025-06-01" class="modal" aria-hidden="true">
+    <a href="#" class="modal-backdrop" aria-label="Close"></a>
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="rel-0601">
+      <div class="modal-head"><h2 id="rel-0601">Release v1.11 — Reports section revamp</h2><a class="modal-close" href="#" aria-label="Close">✕</a></div>
+      <div class="vstack"><div><strong>Target date:</strong> 01 Jun 2025</div><div><strong>Completion date:</strong> 01 Jun 2025</div><div class="sep"></div><div><strong>Hotfixes</strong></div><ul><li>Sticky header flicker fixed</li><li>Sidebar active state retained</li></ul></div>
+    </div>
+  </div>
+
+  <div id="r-2025-05-20" class="modal" aria-hidden="true">
+    <a href="#" class="modal-backdrop" aria-label="Close"></a>
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="rel-0520">
+      <div class="modal-head"><h2 id="rel-0520">Release v1.10 — Client memos & uploader</h2><a class="modal-close" href="#" aria-label="Close">✕</a></div>
+      <div class="vstack"><div><strong>Target date:</strong> 20 May 2025</div><div><strong>Completion date:</strong> 21 May 2025</div><div class="sep"></div><div><strong>Hotfixes</strong></div><ul><li>Memo delete confirmation style aligned</li><li>File table hover contrast improved</li><li>Badge colors adjusted for dark mode</li><li>Modal focus trap planned</li></ul></div>
+    </div>
+  </div>
+
+  <div id="r-2025-05-02" class="modal" aria-hidden="true">
+    <a href="#" class="modal-backdrop" aria-label="Close"></a>
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="rel-0502">
+      <div class="modal-head"><h2 id="rel-0502">Release v1.9 — SLA indicators & filters</h2><a class="modal-close" href="#" aria-label="Close">✕</a></div>
+      <div class="vstack"><div><strong>Target date:</strong> 02 May 2025</div><div><strong>Completion date:</strong> 02 May 2025</div><div class="sep"></div><div><strong>Hotfixes</strong></div><ul><li>Filter pill focus state improved</li></ul></div>
+    </div>
+  </div>
+</body>
+</html>

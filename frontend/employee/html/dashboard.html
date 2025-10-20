@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Employee • Dashboard — Falvey Claims</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="../css/employee.css" />
+</head>
+<body>
+  <!-- sidebar nav for hub -->
+  <aside class="sidebar">
+    <div class="brand"><span class="brand-badge">F</span><span>Falvey</span></div>
+    <nav class="nav">
+      <a class="active" href="./dashboard.html">Dashboard</a>
+      <a href="./clients.html">Clients</a>
+      <a href="./map.html">Map</a>
+      <a href="./reports.html">Reports</a>
+    </nav>
+    <div class="role">Signed in as: Employee</div>
+  </aside>
+
+  <!-- main content -->
+  <main class="main">
+    <header class="topbar">
+      <!-- main header with search bar -->
+      <input class="search" type="search" placeholder="Search clients, policies, underwriters…">
+      <button class="btn">Search</button>
+      <div class="avatar" aria-label="User avatar">MB</div>
+    </header>
+
+    <div class="wrap">
+      <section class="section">
+        <h1>Dashboard</h1>
+        <p class="sub">Overview of my queue, SLAs, and quick actions.</p>
+
+        <!-- quick filter chips -->
+        <div class="pills" aria-label="Quick filters">
+          <a class="pill is-active" href="./clients.html">All</a>
+          <a class="pill" href="./clients.html?#sla=at-risk">SLA at risk</a>
+          <a class="pill" href="./clients.html?#status=new">New today</a>
+          <a class="pill" href="./clients.html?#status=awaiting-docs">Awaiting docs</a>
+          <a class="pill" href="./clients.html?#lob=property">Property</a>
+          <a class="pill" href="./clients.html?#lob=marine">Marine</a>
+        </div>
+
+        <!-- KPI tiles -->
+        <div class="grid">
+          <div class="card stat"><div class="label">My Queue</div><div class="value" id="kpi-my-queue">24</div></div>
+          <div class="card stat"><div class="label">Team Pool</div><div class="value" id="kpi-team-pool">87</div></div>
+          <div class="card stat"><div class="label">Appointments</div><div class="value" id="kpi-appointments">4</div></div>
+          <div class="card stat"><div class="label">SLA On Track</div><div class="progress"><div class="bar" style="width:72%"></div></div></div>
+        </div>
+      </section>
+
+      <!-- hero tiles -->
+      <section class="section">
+        <div class="grid" style="grid-template-columns: repeat(12,1fr); gap:12px">
+          <a class="card" style="grid-column: span 6; display:flex; flex-direction:column; gap:8px" href="./clients.html">
+            <div class="label">Client Search</div><div class="value" style="font-size:1.1rem">Find a client fast</div>
+            <div class="sub">Search, filter, open map & workspace.</div>
+            <div style="margin-top:8px"><span class="btn btn-outline">Open Clients</span></div>
+          </a>
+          <a class="card" style="grid-column: span 6; display:flex; flex-direction:column; gap:8px" href="./reports.html">
+            <div class="label">Reports</div><div class="value" style="font-size:1.1rem">Releases & Tools</div>
+            <div class="sub">Browse releases; open details in-page.</div>
+            <div style="margin-top:8px"><span class="btn btn-outline">View Reports</span></div>
+          </a>
+        </div>
+      </section>
+
+      <!-- lists row -->
+      <section class="section">
+        <div class="grid-3">
+          <div class="card">
+            <div class="card-head">
+              <div class="card-title">SLA at Risk</div>
+              <div class="card-actions"><a class="btn" href="./clients.html?#sla=at-risk">View</a></div>
+            </div>
+            <div class="list">
+              <div class="row"><span class="dot"></span><span>North Shore Bakery</span><span class="badge amber">Due in 4h</span><span class="time">Queue • 12d</span></div>
+              <div class="row"><span class="dot"></span><span>Harbor Freight &amp; Co.</span><span class="badge red">Overdue</span><span class="time">Queue • 15d</span></div>
+              <div class="row"><span class="dot"></span><span>Mile High Storage</span><span class="badge amber">Due today</span><span class="time">Queue • 9d</span></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">
+              <div class="card-title">Today’s Appointments</div>
+              <!-- density switch is just a visual control for later JS -->
+              <div class="card-actions"><label class="switch"><input type="checkbox"><span>Dense</span></label></div>
+            </div>
+            <table class="table compact" id="appt-table">
+              <thead><tr><th>Time</th><th>Client</th><th>Type</th></tr></thead>
+              <tbody>
+                <tr><td>10:30 AM</td><td>Riverline Logistics</td><td>Call</td></tr>
+                <tr><td>2:00 PM</td><td>North Shore Bakery</td><td>On-site</td></tr>
+                <tr><td>4:15 PM</td><td>Evergreen Mills</td><td>Video</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="card">
+            <div class="card-head"><div class="card-title">Shortcuts</div></div>
+            <div class="vstack">
+              <a class="shortcut" href="./clients.html">🔎 Open Client Search</a>
+              <a class="shortcut" href="./map.html">🗺️ Open Full Map</a>
+              <a class="shortcut" href="./reports.html">📊 View Reports</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- mini map + announcements -->
+      <section class="section">
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-head"><div class="card-title">Territory Map (preview)</div><div class="card-actions"><a class="btn" href="./map.html">Open Map</a></div></div>
+            <div class="map-canvas skeleton"></div>
+            <p class="sub" style="margin-top:8px">Preview only — full map and client pins available on the Map page.</p>
+          </div>
+          <div class="card">
+            <div class="card-head"><div class="card-title">Announcements</div></div>
+            <div class="list">
+              <div class="row"><span class="dot"></span><span>New “Request Location Info” template added.</span><span class="time">Today</span></div>
+              <div class="row"><span class="dot"></span><span>Full-screen Map page added with layers.</span><span class="time">Yesterday</span></div>
+              <div class="row"><span class="dot"></span><span>Accessibility pass on buttons and tabs.</span><span class="time">This week</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- recent activity -->
+      <section class="section">
+        <h2>Recent Activity</h2>
+        <div class="card" id="recent-activity" aria-live="polite">
+          <table class="table">
+            <thead><tr><th>Event</th><th>Client</th><th>When</th></tr></thead>
+            <tbody>
+              <tr><td>Opened client</td><td data-client-id="CL-4832">North Shore Bakery</td><td>10:12 AM</td></tr>
+              <tr><td>Requested location info</td><td data-client-id="CL-3920">Harbor Freight &amp; Co.</td><td>9:41 AM</td></tr>
+              <tr><td>Uploaded 3 files</td><td data-client-id="CL-2741">Mile High Storage</td><td>Yesterday</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <footer class="footer"><span>© 2025 Falvey Insurance Group — Student Project</span></footer>
+  </main>
+</body>
+</html>

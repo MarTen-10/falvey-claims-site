@@ -1,0 +1,241 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Employee • Client — Falvey Claims</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="../css/employee.css" />
+</head>
+<body>
+  <!-- sidebar nav for hub -->
+  <aside class="sidebar">
+    <div class="brand"><span class="brand-badge">F</span><span>Falvey</span></div>
+    <nav class="nav">
+      <a href="./dashboard.html">Dashboard</a>
+      <a href="./clients.html">Clients</a>
+      <a href="./map.html">Map</a>
+      <a href="./reports.html">Reports</a>
+    </nav>
+    <div class="role">Signed in as: Employee</div>
+  </aside>
+
+  <!-- main content -->
+  <main class="main">
+    <header class="topbar">
+      <!-- top search -->
+      <input class="search" type="search" placeholder="Search clients, policies, underwriters…" />
+      <button class="btn">Search</button>
+      <label for="audit-drawer" class="btn">Audit</label>
+      <div class="avatar">MB</div>
+    </header>
+
+    <div class="wrap">
+      <section class="section">
+        <h1 id="client-name">North Shore Bakery</h1>
+        <p class="sub">Boston, MA • Client ID <span data-client-id="CL-4832">CL-4832</span></p>
+
+        <!-- quick status chips -->
+        <div class="pills" style="margin-top:12px">
+          <span class="pill">Property</span>
+          <span class="pill is-active">Active</span>
+          <span class="pill">Awaiting docs</span>
+        </div>
+
+        <!-- main tabs -->
+        <div class="tabs">
+          <a class="tab is-active" href="#tab-location">Location</a>
+          <a class="tab" href="#tab-resources">Resources</a>
+          <a class="tab" href="#tab-timeline">Timeline</a>
+          <a class="tab" href="#tab-tasks">Tasks</a>
+        </div>
+
+        <!-- LOCATION TAB -->
+        <section id="tab-location" class="tab-panel is-active">
+          <div class="grid-2">
+            <!-- left info card -->
+            <div class="card">
+              <div class="card-head">
+                <div class="card-title">Location Details</div>
+                <div class="card-actions">
+                  <a class="btn" href="#request-info-modal">Request Info</a>
+                  <a class="btn btn-outline" href="#">Share Location Info</a>
+                </div>
+              </div>
+
+              <div class="grid-2">
+                <div>
+                  <div class="label"><strong>Address</strong></div>
+                  <div class="sub">180 N Michigan Ave, Boston, MA 02114</div>
+                </div>
+                <div>
+                  <div class="label"><strong>Exposure</strong></div>
+                  <div class="sub">$2,450,000</div>
+                </div>
+                <div>
+                  <div class="label"><strong>COPE Supplement</strong></div>
+                  <div class="badge blue">Completed</div>
+                  <div class="sub">Date of last completion: 05/03/2025</div>
+                </div>
+                <div>
+                  <div class="label"><strong>On-site Assessment</strong></div>
+                  <div class="badge amber">Scheduled</div>
+                  <div class="sub">Date of last completion: 06/11/2025</div>
+                </div>
+              </div>
+
+              <div class="sep"></div>
+
+              <!-- upload block (visual only) -->
+              <div class="vstack">
+                <div class="label"><strong>Upload Documents</strong></div>
+                <div class="upload" aria-label="Upload area"><div class="upload-zone">Drop files here or click to select</div></div>
+                <table class="table compact">
+                  <thead><tr><th>Type</th><th>File name</th><th>Uploaded</th><th></th></tr></thead>
+                  <tbody id="files-tbody">
+                    <tr data-file-id="F-1001"><td>Photos</td><td>roof-east.jpg</td><td>Today 9:12 AM</td><td><a class="btn" href="#">Download</a></td></tr>
+                    <tr data-file-id="F-1002"><td>COPE</td><td>cope-supplement.pdf</td><td>Yesterday</td><td><a class="btn" href="#">Download</a></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- right mini map -->
+            <aside class="card">
+              <div class="card-head"><div class="card-title">Map</div><div class="card-actions"><a class="btn" href="./map.html">Open Map</a></div></div>
+              <div class="map-canvas"></div>
+              <div class="legend" style="margin-top:12px">
+                <div class="legend-row"><span class="pin pin-blue"></span><span>Active</span></div>
+                <div class="legend-row"><span class="pin pin-amber"></span><span>SLA Soon</span></div>
+                <div class="legend-row"><span class="pin pin-red"></span><span>Overdue</span></div>
+              </div>
+              <div class="sep" style="margin:16px 0"></div>
+              <div class="vstack">
+                <div class="label"><strong>Next step</strong></div>
+                <div class="sub">Awaiting roof photos; confirm sprinkler head count.</div>
+                <div class="label" style="margin-top:8px"><strong>Contacts</strong></div>
+                <div class="sub">Owner: Alex Rivera • (617) 555-2811</div>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <!-- RESOURCES TAB (with sub-tabs) -->
+        <section id="tab-resources" class="tab-panel">
+          <div class="card">
+            <div class="card-head">
+              <div class="card-title">Resources</div>
+              <div class="card-actions">
+                <input class="input" placeholder="Enter keyword (3 characters minimum)" minlength="3" />
+                <a class="btn" href="#memo-modal">Add New Memo</a>
+              </div>
+            </div>
+
+            <div class="tabs">
+              <a class="tab is-active" href="#res-recommendations">Recommendation Memos</a>
+              <a class="tab" href="#res-system">System Memos</a>
+              <a class="tab" href="#res-general">General Memos</a>
+            </div>
+
+            <section id="res-recommendations" class="tab-panel is-active">
+              <div class="memos" id="memos-recommendation">
+                <article class="memo" data-memo-id="M-2201">
+                  <div class="memo-head">
+                    <div><div class="memo-title">Roof maintenance recommendations</div><div class="memo-meta">Type: Recommendation • Created 05/02</div></div>
+                    <div class="memo-actions"><a class="btn btn-outline" href="#memo-modal">Edit</a><a class="btn" href="#">Delete</a></div>
+                  </div>
+                  <p class="memo-body">Inspect flashing at HVAC penetrations; consider elastomeric coating in Q3; add monthly sweep to reduce debris.</p>
+                </article>
+              </div>
+            </section>
+
+            <section id="res-system" class="tab-panel">
+              <div class="empty">No system memos yet.</div>
+            </section>
+
+            <section id="res-general" class="tab-panel">
+              <div class="empty">No general memos yet.</div>
+            </section>
+          </div>
+        </section>
+
+        <!-- TIMELINE TAB -->
+        <section id="tab-timeline" class="tab-panel">
+          <div class="card">
+            <div class="card-head"><div class="card-title">Activity Timeline</div></div>
+            <div class="timeline">
+              <div class="timeline-item"><div class="what">Request sent for COPE details</div><div class="when">Today 9:42 AM</div></div>
+              <div class="timeline-item"><div class="what">Uploaded 3 roof photos</div><div class="when">Yesterday 4:17 PM</div></div>
+              <div class="timeline-item"><div class="what">On-site assessment scheduled</div><div class="when">Jun 11, 2025</div></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TASKS TAB -->
+        <section id="tab-tasks" class="tab-panel">
+          <div class="grid-2">
+            <div class="card">
+              <div class="card-head"><div class="card-title">Checklist</div></div>
+              <div class="vstack">
+                <label class="switch"><input type="checkbox"><span>Confirm sprinkler head count</span></label>
+                <label class="switch"><input type="checkbox" checked><span>Collect roof photos</span></label>
+                <label class="switch"><input type="checkbox"><span>Verify COPE supplement</span></label>
+                <label class="switch"><input type="checkbox"><span>Update contact details</span></label>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-head"><div class="card-title">Notes</div></div>
+              <textarea class="input" rows="10" placeholder="Internal notes…"></textarea>
+            </div>
+          </div>
+        </section>
+      </section>
+    </div>
+
+    <footer class="footer"><span>© 2025 Falvey Insurance Group — Student Project</span></footer>
+  </main>
+
+  <!-- audit drawer (CSS-only) -->
+  <input id="audit-drawer" class="drawer-toggle" type="checkbox" />
+  <aside class="drawer" aria-label="Audit drawer">
+    <div class="drawer-header"><strong>Audit log</strong><label class="btn" for="audit-drawer">Close</label></div>
+    <div class="drawer-content">
+      <ul class="list" style="list-style:none; padding:0; margin:0">
+        <li class="row"><span class="dot"></span><span>Memo edited by J. Patel</span><span class="time">Today 9:55 AM</span></li>
+        <li class="row"><span class="dot"></span><span>File uploaded: roof-east.jpg</span><span class="time">Today 9:12 AM</span></li>
+        <li class="row"><span class="dot"></span><span>Assessment scheduled for 06/11</span><span class="time">Yesterday</span></li>
+      </ul>
+    </div>
+  </aside>
+
+  <!-- request info modal -->
+  <div id="request-info-modal" class="modal" aria-hidden="true">
+    <a href="#" class="modal-backdrop" aria-label="Close"></a>
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="req-title">
+      <div class="modal-head"><h2 id="req-title">Request Location Info</h2><a class="modal-close" href="#" aria-label="Close">✕</a></div>
+      <form class="vstack" id="request-info-form">
+        <label>Client <input class="input" name="client_name" value="North Shore Bakery" /></label>
+        <label>Address <input class="input" name="address_line1" value="180 N Michigan Ave, Boston, MA 02114" /></label>
+        <div class="grid-2"><label>City <input class="input" name="city" value="Boston" /></label><label>State <input class="input" name="state" value="MA" /></label></div>
+        <label>What to request <textarea class="input" name="request_body" rows="4" placeholder="Ask for COPE details, roof photos, and fire suppression info."></textarea></label>
+        <div class="hstack" style="justify-content:flex-end; gap:8px"><a class="btn" href="#">Cancel</a><a class="btn primary" href="#">Send Request</a></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- memo modal -->
+  <div id="memo-modal" class="modal" aria-hidden="true">
+    <a href="#" class="modal-backdrop" aria-label="Close"></a>
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="memo-title">
+      <div class="modal-head"><h2 id="memo-title">Add Memo</h2><a class="modal-close" href="#" aria-label="Close">✕</a></div>
+      <form class="vstack" id="memo-form">
+        <label>Title <input class="input" name="memo_title" placeholder="Memo title" /></label>
+        <label>Type <select class="input" name="memo_type"><option>Recommendation</option><option>System</option><option>General</option></select></label>
+        <label>Details <textarea class="input" name="memo_body" rows="5" placeholder="Write memo details…"></textarea></label>
+        <label>Attachment (optional) <input class="input" type="file" name="memo_file" /></label>
+        <div class="hstack" style="justify-content:flex-end; gap:8px"><a class="btn" href="#">Cancel</a><a class="btn primary" href="#">Save</a></div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

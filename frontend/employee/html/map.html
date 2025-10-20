@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Employee • Map — Falvey Claims</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="../css/employee.css" />
+</head>
+<body>
+  <!-- sidebar nav for hub -->
+  <aside class="sidebar">
+    <div class="brand"><span class="brand-badge">F</span><span>Falvey</span></div>
+    <nav class="nav">
+      <a href="./dashboard.html">Dashboard</a>
+      <a href="./clients.html">Clients</a>
+      <a class="active" href="./map.html">Map</a>
+      <a href="./reports.html">Reports</a>
+    </nav>
+    <div class="role">Signed in as: Employee</div>
+  </aside>
+
+  <!-- full map layout -->
+  <main class="main map-page">
+    <header class="topbar">
+      <div class="toolbar">
+        <div class="hstack">
+          <input class="search" type="search" placeholder="Search address, client, city…" />
+          <button class="btn">Search</button>
+        </div>
+        <div class="hstack">
+          <div class="pills">
+            <span class="pill is-active">All</span>
+            <span class="pill">Property</span>
+            <span class="pill">Marine</span>
+            <span class="pill">SLA soon</span>
+            <span class="pill">Overdue</span>
+          </div>
+          <a class="btn" href="#request-info-modal">Request Info</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="map-full">
+      <!-- backend can mount Leaflet/Google here -->
+      <div id="map-canvas" class="map-canvas-full" aria-label="Full map"></div>
+
+      <!-- legend -->
+      <div class="map-legend card">
+        <div class="legend-row"><span class="pin pin-blue"></span><span>Active</span></div>
+        <div class="legend-row"><span class="pin pin-amber"></span><span>SLA Soon</span></div>
+        <div class="legend-row"><span class="pin pin-red"></span><span>Overdue</span></div>
+      </div>
+
+      <!-- selection sheet -->
+      <div class="map-sheet card">
+        <div class="card-title" style="margin-bottom:6px">Selected</div>
+        <div class="vstack">
+          <strong id="sel-name">North Shore Bakery</strong>
+          <span class="sub">Boston, MA</span>
+          <div class="pills" style="margin-top:8px"><span class="pill">Property</span><span class="pill">Docs needed</span></div>
+          <div class="hstack" style="margin-top:10px; gap:8px">
+            <a class="btn btn-outline" href="./client.html?client_id=CL-4832">Open workspace</a>
+            <a class="btn" href="#request-info-modal">Request Info</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer"><span>© 2025 Falvey Insurance Group — Student Project</span></footer>
+  </main>
+
+  <!-- request info modal -->
+  <div id="request-info-modal" class="modal" aria-hidden="true">
+    <a href="#" class="modal-backdrop" aria-label="Close"></a>
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="req-title">
+      <div class="modal-head"><h2 id="req-title">Request Location Info</h2><a class="modal-close" href="#" aria-label="Close">✕</a></div>
+      <form class="vstack" id="request-info-form">
+        <label>Client <input class="input" name="client_name" placeholder="Client name" /></label>
+        <label>Address <input class="input" name="address_line1" placeholder="Street, City ST ZIP" /></label>
+        <div class="grid-2"><label>City <input class="input" name="city" /></label><label>State <input class="input" name="state" /></label></div>
+        <label>What to request <textarea class="input" name="request_body" rows="4" placeholder="COPE details, photos, fire suppression…"></textarea></label>
+        <div class="hstack" style="justify-content:flex-end; gap:8px"><a class="btn" href="#">Cancel</a><a class="btn primary" href="#">Send Request</a></div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

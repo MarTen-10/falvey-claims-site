@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Employee • Clients — Falvey Claims</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="../css/employee.css" />
+</head>
+<body>
+  <!-- sidebar nav for hub -->
+  <aside class="sidebar">
+    <div class="brand"><span class="brand-badge">F</span><span>Falvey</span></div>
+    <nav class="nav">
+      <a href="./dashboard.html">Dashboard</a>
+      <a class="active" href="./clients.html">Clients</a>
+      <a href="./map.html">Map</a>
+      <a href="./reports.html">Reports</a>
+    </nav>
+    <div class="role">Signed in as: Employee</div>
+  </aside>
+
+  <!-- main content -->
+  <main class="main">
+    <header class="topbar">
+      <!-- main header with search bar -->
+      <input class="search" type="search" placeholder="Search clients, policies, underwriters…" />
+      <button class="btn">Search</button>
+      <div class="avatar" aria-label="User avatar">MB</div>
+    </header>
+
+    <div class="wrap">
+      <section class="section">
+        <h1>Clients</h1>
+        <p class="sub">Search, filter, sort — open map and workspace.</p>
+
+        <!-- quick filters -->
+        <div class="pills" aria-label="Filters">
+          <a class="pill is-active" href="#">All</a>
+          <a class="pill" href="#?status=awaiting-docs">Awaiting docs</a>
+          <a class="pill" href="#?sla=at-risk">SLA at risk</a>
+          <a class="pill" href="#?lob=property">Property</a>
+          <a class="pill" href="#?lob=marine">Marine</a>
+          <a class="pill" href="#?region=northeast">Northeast</a>
+        </div>
+
+        <div class="split">
+          <!-- table pane -->
+          <section class="pane">
+            <div class="card">
+              <div class="card-head">
+                <div class="card-title">Results</div>
+                <div class="card-actions">
+                  <!-- density + columns are just UI shells for demo -->
+                  <label class="switch"><input type="checkbox"><span>Dense</span></label>
+                  <a class="btn" href="#columns-drawer">Columns</a>
+                  <a class="btn" href="#">Export</a>
+                </div>
+              </div>
+
+              <div class="table-wrap">
+                <table class="table" id="clients-table" aria-label="Clients table">
+                  <thead>
+                    <tr>
+                      <th><span class="th-sort">Client <span class="sort-ind">▲</span></span></th>
+                      <th class="col-location">Address</th>
+                      <th>Account #</th>
+                      <th>Policy Type</th>
+                      <th>Underwriter</th>
+                      <th>Claims (Tot/Open)</th>
+                      <th class="col-sla">SLA</th>
+                      <th class="col-lob">LOB</th>
+                      <th>Exposure</th>
+                      <th>Policies</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody id="client-table-body">
+                    <!-- sample rows to show real columns -->
+                    <tr data-client-id="CL-4832">
+                      <td>North Shore Bakery</td>
+                      <td class="col-location">180 N Michigan Ave, Boston, MA</td>
+                      <td>AC-43122</td>
+                      <td>Property</td>
+                      <td>J. Patel</td>
+                      <td>7 / 1</td>
+                      <td class="col-sla"><span class="badge amber">Due in 4h</span></td>
+                      <td class="col-lob">Property</td>
+                      <td>$2.45M</td>
+                      <td>9</td>
+                      <td><a class="btn btn-outline" href="./client.html?client_id=CL-4832">Open</a></td>
+                    </tr>
+                    <tr data-client-id="CL-3920">
+                      <td>Harbor Freight &amp; Co.</td>
+                      <td class="col-location">40 Shipyard Rd, Providence, RI</td>
+                      <td>AC-22014</td>
+                      <td>Marine</td>
+                      <td>S. Clarke</td>
+                      <td>3 / 0</td>
+                      <td class="col-sla"><span class="badge red">Overdue</span></td>
+                      <td class="col-lob">Marine</td>
+                      <td>$1.18M</td>
+                      <td>6</td>
+                      <td><a class="btn btn-outline" href="./client.html?client_id=CL-3920">Open</a></td>
+                    </tr>
+                    <tr data-client-id="CL-2741">
+                      <td>Mile High Storage</td>
+                      <td class="col-location">1220 Blake St, Denver, CO</td>
+                      <td>AC-99301</td>
+                      <td>Property</td>
+                      <td>H. Nguyen</td>
+                      <td>9 / 2</td>
+                      <td class="col-sla"><span class="badge amber">Due today</span></td>
+                      <td class="col-lob">Property</td>
+                      <td>$3.02M</td>
+                      <td>11</td>
+                      <td><a class="btn btn-outline" href="./client.html?client_id=CL-2741">Open</a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- table footer -->
+              <div class="table-foot">
+                <div>Rows per page:
+                  <select class="select"><option>10</option><option selected>25</option><option>50</option></select>
+                </div>
+                <div class="pagination">
+                  <a class="page" href="#">«</a>
+                  <a class="page is-active" href="#">1</a>
+                  <a class="page" href="#">2</a>
+                  <a class="page" href="#">3</a>
+                  <a class="page" href="#">»</a>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- map pane -->
+          <aside class="pane map-pane" id="map">
+            <div class="card sticky">
+              <div class="card-head">
+                <div class="card-title">Map</div>
+                <div class="card-actions">
+                  <a class="btn" href="./map.html">Open Full Map</a>
+                  <a class="btn btn-outline" href="#">Drop Pin</a>
+                </div>
+              </div>
+
+              <div class="map-canvas" aria-label="Map preview"></div>
+
+              <div class="legend">
+                <div class="legend-row"><span class="pin pin-blue"></span><span>Active</span></div>
+                <div class="legend-row"><span class="pin pin-amber"></span><span>SLA Soon</span></div>
+                <div class="legend-row"><span class="pin pin-red"></span><span>Overdue</span></div>
+              </div>
+
+              <div class="card subcard">
+                <div class="card-title" style="margin-bottom:8px">Selected</div>
+                <div class="vstack">
+                  <div><strong id="sel-name">North Shore Bakery</strong></div>
+                  <div class="sub">Boston, MA</div>
+                  <div class="pills" style="margin-top:8px">
+                    <span class="pill">Property</span>
+                    <span class="pill">Docs needed</span>
+                  </div>
+                  <div style="margin-top:8px">
+                    <a class="btn btn-outline" href="./client.html?client_id=CL-4832">Open workspace</a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </aside>
+        </div>
+      </section>
+    </div>
+
+    <footer class="footer"><span>© 2025 Falvey Insurance Group — Student Project</span></footer>
+  </main>
+
+  <!-- columns drawer (CSS-only) -->
+  <input id="columns-drawer" class="drawer-toggle" type="checkbox" />
+  <aside class="drawer">
+    <div class="drawer-header">
+      <strong>Columns</strong>
+      <label class="btn" for="columns-drawer">Close</label>
+    </div>
+    <div class="drawer-content vstack">
+      <!-- checkboxes here are just placeholders for a future JS wiring -->
+      <label class="switch"><input type="checkbox" checked><span>Client</span></label>
+      <label class="switch"><input type="checkbox" checked><span>Address</span></label>
+      <label class="switch"><input type="checkbox" checked><span>SLA</span></label>
+      <label class="switch"><input type="checkbox" checked><span>LOB</span></label>
+      <label class="switch"><input type="checkbox"><span>Dense rows</span></label>
+    </div>
+  </aside>
+</body>
+</html>
