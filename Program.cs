@@ -16,6 +16,7 @@ builder.Services
 // Add Swagger/Swashbuckle and inject certain services for certain controllers
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<AccountService>();
+builder.Services.AddScoped<InputService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors(options =>
