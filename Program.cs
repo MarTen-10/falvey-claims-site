@@ -13,7 +13,9 @@ builder.Services
             Newtonsoft.Json.ReferenceLoopHandling.Ignore
     );
 
-// Add Swagger/Swashbuckle
+// Add Swagger/Swashbuckle and inject certain services for certain controllers
+builder.Services.AddScoped<AuthService>();
+builder.Services.AddScoped<AccountService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors(options =>
