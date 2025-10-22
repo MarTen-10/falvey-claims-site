@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resources</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="left">
+        <div class="Equivalent">
+          <img src="../image/equivalent.png" alt="equivalent" width="40" />
+        </div>
+        <div>
+          <img
+            src="../image/logo.png"
+            alt="Falvey Insurance Group Logo "
+            width="150"
+          />
+        </div>
+        <div class="search">
+          <select class="company_select">
+            <option>All Company</option>
+            <option></option>
+            <option></option>
+          </select>
+          <div class="search-box">
+            <input type="text" placeholder="Enter keybord 3 characters minimum" />
+            <button class="search-btn"><img src="../image/search.png" alt="search"width="20"></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="user-info">
+          <span class="username">Username123</span>
+          <a href="#" class="logout" id="logoutBtn">Log out</a>
+        </div>
+          <img
+            src="../image/user logo.png"
+            alt="User"
+            class="avatar"
+            width="40"
+          />
+      </div>
+      </div>
+    </header>
+    <div class="page-tabs">
+      <a href="../Location/index.html">Location</a>
+      <a href="../Recources/index.html" class="active">Resources</a>
+    </div>
+    <main>
+      <section class="address-section">
+        <h2>180 N Michigan Avenue</h2>
+        <p>180 N Michigan Avenue Suite 1210 Chicago IL 60601, United States</p>
+        <button class="share-btn">
+        Share Location Info
+        <img src="../image/upload-button.png" alt="Upload" width="20" />
+      </button>
+
+      <h3>Number of Policies</h3>
+      <table class ="policy-table">
+        <thead>
+          <tr>
+            <th>Company Name</th>
+            <th>Account Number</th>
+            <th>Policy Type</th>
+            <th>Underwriter</th>
+            <th>Claims Total/Open</th>
+            <th>Exposure Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        </tbody>
+      </table>
+
+      <div class="recommendation">
+        <div class="sub-tabs">
+          <button class="sub active" data-tab="recommendation-grid">
+            Recommendation
+          </button>
+          <button class="sub" data-tab="memos">Memos</button>
+        </div>
+
+        <div id="recommendation-grid" class="sub-content active">
+          <div class="grid">
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+          </div>
+        </div>
+
+        <div id="memos" class="sub-content">
+          <p>No memos available.</p>
+        </div>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
