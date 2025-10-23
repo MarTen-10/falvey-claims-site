@@ -1,3 +1,4 @@
+using FalveyInsuranceGroup.Backend.Filters;
 namespace FalveyInsuranceGroup.Backend.Dtos
 {
 
@@ -9,6 +10,7 @@ namespace FalveyInsuranceGroup.Backend.Dtos
         /// <summary>
         /// unique identifier for a user
         /// </summary>
+        [RequiredNull(ErrorMessage = "ERROR: User ID should not be provided on creation")]
         public int? user_id { get; set; }
 
         /// <summary>
@@ -60,3 +62,4 @@ namespace FalveyInsuranceGroup.Backend.Dtos
 
 
 }
+
