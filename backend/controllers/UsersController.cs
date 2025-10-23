@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using FalveyInsuranceGroup.Db;
 using FalveyInsuranceGroup.Backend.Models;
 ﻿using FalveyInsuranceGroup.Backend.Dtos;
+using FalveyInsuranceGroup.Backend.Helpers;
 using System.Linq.Expressions;
 
 namespace FalveyInsuranceGroup.Backend.Controllers
@@ -16,8 +17,10 @@ namespace FalveyInsuranceGroup.Backend.Controllers
     public class UsersController : ControllerBase
     {
         private readonly FalveyInsuranceGroupContext _context;
+        private readonly InputService _service;
+        private static readonly  string[] ALLOWED_ROLE = { "Customer", "Employee", "Admin" };
 
-        public UsersController(FalveyInsuranceGroupContext context)
+        public UsersController(FalveyInsuranceGroupContext context, InputService service)
         {
             _context = context;
         }
@@ -29,7 +32,7 @@ namespace FalveyInsuranceGroup.Backend.Controllers
         [HttpGet]
         public async Task<List<UserDto>> GetUsers()
         {
-            var list_users = await _context.users
+            var list_users = await _context.Users
             .AsNoTracking()
             .Select(mapToUserDto)
             .ToListAsync();
@@ -46,7 +49,7 @@ namespace FalveyInsuranceGroup.Backend.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<UserDto>> GetUser(int id)
         {
-            var user = await _context.users.FindAsync(id);
+            var user = await _context.Users.FindAsync(id);
 
             if (user == null) {
                 return NotFound($"The User with the ID {id} could not be found");
@@ -65,15 +68,9 @@ namespace FalveyInsuranceGroup.Backend.Controllers
         [HttpPost]
         public async Task<ActionResult<User>> PostUser([FromBody] UserDto dto)
         {
-
-            if (dto.user_id.HasValue) {
-                return BadRequest("User ID cannot be provided on creation");
-            }
-
-            if (!checkRole(dto.role)) {
+            if (!_service.hasValidEnumType(ALLOWED_ROLE, dto.role))  {
                 return BadRequest("Not a valid value for role");
             }
-
 
             // checks to see if newUser has email already being used by another User
             if (checkEmail(dto.email)) {
@@ -105,7 +102,7 @@ namespace FalveyInsuranceGroup.Backend.Controllers
                 updated_at = dto.updated_at
             };
 
-            _context.users.Add(new_user);
+            _context.Users.Add(new_user);
             await _context.SaveChangesAsync();
 
 
@@ -125,14 +122,9 @@ namespace FalveyInsuranceGroup.Backend.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult<User>> PutUser(int id, [FromBody] UserDto dto)
         {
-            if (dto.user_id.HasValue) {
-                return BadRequest("User ID cannot be changed");
-            }
-
-            if (!checkRole(dto.role)) {
+            if (!_service.hasValidEnumType(ALLOWED_ROLE, dto.role))  {
                 return BadRequest("Not a valid value for role");
             }
-
 
             // checks to see if the email is already used by another User
             if (checkEmail(dto.email)) {
@@ -152,7 +144,7 @@ namespace FalveyInsuranceGroup.Backend.Controllers
                 }
             }
 
-            var update_user = await _context.users.FindAsync(id);
+            var update_user = await _context.Users.FindAsync(id);
             if (update_user == null) {
                 return NotFound($"The User with the ID {id} was not found");
             }
@@ -182,12 +174,12 @@ namespace FalveyInsuranceGroup.Backend.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<User>> DeleteUser(int id)
         {
-            var delete_user = await _context.users.FindAsync(id);
+            var delete_user = await _context.Users.FindAsync(id);
             if (delete_user == null) {
                 return NotFound($"The User with ID {id} does not exist");
             }
 
-            _context.users.Remove(delete_user);
+            _context.Users.Remove(delete_user);
             await _context.SaveChangesAsync();
 
 
@@ -206,29 +198,12 @@ namespace FalveyInsuranceGroup.Backend.Controllers
 
         }
 
-        private Boolean checkRole(string role)
-        {
-            string[] roles = { "Customer", "Employee", "Admin" };
-
-            for (int i = 0; i < roles.Length; ++i)
-            {
-                if (role == roles[i])
-                {
-                    return true;
-                }
-
-            }
-
-            return false;
-        }
-
-
         private Boolean checkEmail(string new_email)
         {
 
             // assigns variable with an IQueryable that contains a User with the same email value as newUser
             // assigns empty IQueryable if no User with email value is found
-            var entityWithEmail = _context.users.Where(u => u.email == new_email);
+            var entityWithEmail = _context.Users.Where(u => u.email == new_email);
 
             // checks to see if IQueryable is empty
             if (entityWithEmail.Any()) {
@@ -280,3 +255,4 @@ namespace FalveyInsuranceGroup.Backend.Controllers
     }
 
 }
+
