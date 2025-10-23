@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using backend.services;
+using FalveyInsuranceGroup.Backend.Services;
 
 
-namespace backend.controllers
+namespace FalveyInsuranceGroup.Backend.Controllers
 {
 
     /// <summary>
@@ -52,3 +52,4 @@ namespace backend.controllers
 
 
 }
+
