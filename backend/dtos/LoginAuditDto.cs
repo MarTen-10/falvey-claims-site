@@ -1,4 +1,4 @@
-namespace backend.dtos
+namespace FalveyInsuranceGroup.Backend.Dtos
 {
     /// <summary>
     /// Data to represent a LoginAudit entity
@@ -39,6 +39,7 @@ namespace backend.dtos
 
 
     }
+
 
 
 
