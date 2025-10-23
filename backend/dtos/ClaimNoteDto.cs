@@ -1,4 +1,5 @@
-namespace backend.dtos
+using FalveyInsuranceGroup.Backend.Filters;
+namespace FalveyInsuranceGroup.Backend.Dtos
 {
     /// <summary>
     /// Represents the data required to create claimnote dto
@@ -8,6 +9,7 @@ namespace backend.dtos
         /// <summary>
         /// The required unique identifier for a claim note
         /// </summary>
+        [RequiredNull(ErrorMessage = "ERROR: Claim Note ID should not be provided on creation")]
         public int? note_id { get; set; }
 
         /// <summary>
@@ -35,7 +37,5 @@ namespace backend.dtos
         /// </summary>
         public string? assigned_claim { get; set; }
     }
-
-
 
 }
