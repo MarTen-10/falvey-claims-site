@@ -75,21 +75,6 @@ namespace FalveyInsuranceGroup.Backend.Controllers
         [HttpPost]
         public async Task<ActionResult> AddClaimNote([FromBody] ClaimNoteDto dto)
         {
-            if (!ModelState.IsValid)
-            {
-                return ValidationProblem(ModelState);
-            }
-
-            if (dto.note_id.HasValue) {
-                return BadRequest(new
-                {
-                    error = "Note ID should not be provided on creation",
-                    errorCode = "INVALID_CLAIMNOTE_CREATION",
-                    timestamp = DateTime.UtcNow
-
-                });
-            }
-
             if (dto.author_user_id != null) {
                 if (!await hasValidUserId(dto.author_user_id)) {
                     return BadRequest("The given user ID does not exist");
@@ -128,17 +113,6 @@ namespace FalveyInsuranceGroup.Backend.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult<ClaimNote>> UpdateClaimNote(int id, [FromBody] ClaimNoteDto dto)
         {
-             // makes sure that a user does not give a value for note_id field
-            if (dto.note_id.HasValue)
-            {
-                return BadRequest(new
-                {
-                    error = "Note ID cannot be changed",
-                    timestamp = DateTime.UtcNow
-
-                });
-            }
-
             var claim_note = await _context.ClaimNotes.FindAsync(id);
 
             // checks to see if the fetched entity exists
@@ -189,7 +163,7 @@ namespace FalveyInsuranceGroup.Backend.Controllers
         /// <returns>A task with bool result</returns>
         private async Task<bool> hasValidUserId(int? author_user_id)
         {
-            return await _context.users.AnyAsync(u => u.user_id == author_user_id);
+            return await _context.Users.AnyAsync(u => u.user_id == author_user_id);
 
         }
 
@@ -203,8 +177,6 @@ namespace FalveyInsuranceGroup.Backend.Controllers
             return await _context.Claims.AnyAsync(c => c.claim_id == note_claim_id);
 
         }
-
-
 
         /// <summary>
         /// Creates a dto using a claim note entity model
@@ -247,3 +219,4 @@ namespace FalveyInsuranceGroup.Backend.Controllers
 
 
 }
+
