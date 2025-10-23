@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FalveyInsuranceGroup")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c3c9f54e28896530183d3499b3d0ce1772542e88")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6d59b45daf1113a846a7cafd2ef73d8cca759c4c")]
 [assembly: System.Reflection.AssemblyProductAttribute("FalveyInsuranceGroup")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FalveyInsuranceGroup")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

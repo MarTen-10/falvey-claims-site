@@ -18,17 +18,20 @@ fetch(API_BASE)
     return response.json();
   })
   .then(data => {
-    // Fix: Extract the array from the response object
     console.log('API Response:', data);
-    releases = data.data || data; // Handle both wrapped and unwrapped responses
+    releases = data.data || data;
+    console.log('Releases loaded:', releases);
     if (releases.length > 0) {
       setup();
     } else {
       console.warn('No releases found');
+      setup(); // Still call setup to show admin controls
     }
   })
   .catch(error => {
     console.error('Error fetching releases:', error);
+    //security alert
+    alert('Failed to load releases. Please check if the backend is running at ' + API_BASE);
   });
 
 // Update the details panel with the given release object
@@ -38,7 +41,7 @@ function renderDetails(release) {
   const dateEl = document.getElementById('detailsDate');
   const notesEl = document.getElementById('detailsNotes');
 
-  // Version and dates
+  titleEl.textContent = `Release ${release.version}`;
   verEl.textContent = release.version;
   dateEl.textContent = release.start_date ? new Date(release.start_date).toLocaleDateString('en-US', {
     year: 'numeric', month: 'long', day: 'numeric'
@@ -59,7 +62,7 @@ function renderDetails(release) {
     notesEl.innerHTML = '<p>No notes available.</p>';
   }
 
-  // Hotfix notes section (if you have this element in HTML)
+  // Hotfix notes section
   const hotfixEl = document.getElementById('detailsHotfixNotes');
   if (hotfixEl && release.hotfix_notes) {
     const lines = release.hotfix_notes.trim().split('\n').map(l => l.trim()).filter(l => l.length > 0);
@@ -76,7 +79,7 @@ function renderDetails(release) {
     hotfixEl.style.display = 'none';
   }
 
-  // Replace the details panel save-row with an Edit button when admin; hide otherwise
+  // Replace the details panel save-row with an Edit button when admin
   const saveRow = document.querySelector('.details .panel .save-row');
   if (saveRow) {
     saveRow.innerHTML = '';
@@ -101,60 +104,23 @@ function renderVersionList() {
   list.innerHTML = '';
   select.innerHTML = '';
 
-  // sort releases newest first by date so UI is chronological descending
-  releases.sort((a, b) => new Date(b.start_date) - new Date(a.start_date));
+  if (releases.length === 0) {
+    list.innerHTML = '<li style="padding: 1rem; color: #6b7280;">No releases yet. Click "Add Release" to create one.</li>';
+    return;
+  }
+
+  // sort releases newest first by start_date
+  releases.sort((a, b) => {
+    const dateA = a.start_date ? new Date(a.start_date) : new Date(0);
+    const dateB = b.start_date ? new Date(b.start_date) : new Date(0);
+    return dateB - dateA;
+  });
 
   releases.forEach(r => {
     // create the card list item for this release
     const li = document.createElement('li');
     li.className = 'card-item version-item';
     li.setAttribute('data-version', r.version);
-
-    // footer will hold the details action and an actions area for edit/delete
-    const footer = document.createElement('div');
-    footer.className = 'card-footer';
-
-    // edit icon (left) – visible only when isAdmin
-    const editBtn = document.createElement('button');
-    editBtn.className = 'action-btn edit';
-    editBtn.innerHTML = '<span aria-hidden="true">✎</span><span class="label">Edit</span>';
-    editBtn.addEventListener('click', (e) => { e.stopPropagation(); openReleaseModal('edit', r.version); });
-    if (isAdmin) {
-      editBtn.style.display = '';
-    } else {
-      editBtn.style.display = 'none';
-    }
-
-    // details button (selects and shows release details in right panel)
-    const detailsBtn = document.createElement('button');
-    detailsBtn.className = 'details-btn';
-    detailsBtn.setAttribute('aria-controls', 'details');
-    detailsBtn.setAttribute('aria-expanded', 'false');
-    detailsBtn.textContent = 'Details';
-    detailsBtn.addEventListener('click', () => {
-      list.querySelectorAll('.details-btn').forEach(b => b.setAttribute('aria-expanded', 'false'));
-      detailsBtn.setAttribute('aria-expanded', 'true');
-      renderDetails(r);
-    });
-
-    // delete icon (right) – visible only when isAdmin
-    const deleteBtn = document.createElement('button');
-    deleteBtn.className = 'action-btn delete';
-    deleteBtn.innerHTML = '<span aria-hidden="true">🗑</span><span class="label">Delete</span>';
-    deleteBtn.addEventListener('click', (e) => { e.stopPropagation(); deleteRelease(r.version); });
-    if (isAdmin) {
-      deleteBtn.style.display = '';
-    } else {
-      deleteBtn.style.display = 'none';
-    }
-
-    footer.appendChild(detailsBtn);
-    const actionsDiv = document.createElement('div');
-    actionsDiv.className = 'card-actions';
-    actionsDiv.appendChild(editBtn);
-    actionsDiv.appendChild(deleteBtn);
-    footer.appendChild(actionsDiv);
-    li.appendChild(footer);
 
     // body area for card content
     const body = document.createElement('div');
@@ -182,8 +148,49 @@ function renderVersionList() {
     if (r.notes) {
       body.appendChild(excerpt);
     }
-    li.insertBefore(body, li.firstChild);
+    li.appendChild(body);
 
+    // footer will hold the details action and an actions area for edit/delete
+    const footer = document.createElement('div');
+    footer.className = 'card-footer';
+
+    // details button
+    const detailsBtn = document.createElement('button');
+    detailsBtn.className = 'details-btn';
+    detailsBtn.setAttribute('aria-controls', 'details');
+    detailsBtn.setAttribute('aria-expanded', 'false');
+    detailsBtn.textContent = 'Details';
+    detailsBtn.addEventListener('click', () => {
+      list.querySelectorAll('.details-btn').forEach(b => b.setAttribute('aria-expanded', 'false'));
+      detailsBtn.setAttribute('aria-expanded', 'true');
+      renderDetails(r);
+    });
+
+    footer.appendChild(detailsBtn);
+
+    // Admin controls
+    if (isAdmin) {
+      const actionsDiv = document.createElement('div');
+      actionsDiv.className = 'card-actions';
+
+      // edit icon
+      const editBtn = document.createElement('button');
+      editBtn.className = 'action-btn edit';
+      editBtn.innerHTML = '<span aria-hidden="true">✎</span><span class="label">Edit</span>';
+      editBtn.addEventListener('click', (e) => { e.stopPropagation(); openReleaseModal('edit', r.version); });
+      
+      // delete icon
+      const deleteBtn = document.createElement('button');
+      deleteBtn.className = 'action-btn delete';
+      deleteBtn.innerHTML = '<span aria-hidden="true">🗑</span><span class="label">Delete</span>';
+      deleteBtn.addEventListener('click', (e) => { e.stopPropagation(); deleteRelease(r.version); });
+      
+      actionsDiv.appendChild(editBtn);
+      actionsDiv.appendChild(deleteBtn);
+      footer.appendChild(actionsDiv);
+    }
+
+    li.appendChild(footer);
     list.appendChild(li);
 
     // populate the mobile select option
@@ -222,19 +229,31 @@ function openReleaseModal(mode, version) {
   const modal = document.getElementById('releaseModal');
   const titleEl = document.getElementById('modalTitle');
   const form = document.getElementById('releaseForm');
+  const modalError = document.getElementById('modalError');
+  
+  // Clear any previous errors
+  modalError.textContent = '';
+  modalError.style.display = 'none';
+  
   document.getElementById('formMode').value = mode;
 
   if (mode === 'edit') {
     const rel = releases.find(r => r.version === version);
-    if (!rel) return;
+    if (!rel) {
+      alert('Release not found');
+      return;
+    }
     titleEl.textContent = 'Edit Release';
     document.getElementById('releaseVersion').value = rel.version;
-    document.getElementById('releaseDate').value = rel.start_date || new Date().toISOString().slice(0,10);
-    document.getElementById('releaseNotes').value = rel.notes?.trim() || '';
+    document.getElementById('releaseVersion').disabled = true; // Can't change version (it's the primary key)
+    document.getElementById('releaseTitle').value = rel.version; // Using version as title
+    document.getElementById('releaseDate').value = rel.start_date ? rel.start_date : '';
+    document.getElementById('releaseNotes').value = rel.notes || '';
     document.getElementById('originalVersion').value = rel.version;
   } else {
     titleEl.textContent = 'Add Release';
     form.reset();
+    document.getElementById('releaseVersion').disabled = false;
     document.getElementById('releaseDate').value = new Date().toISOString().slice(0,10);
     document.getElementById('originalVersion').value = '';
   }
@@ -266,6 +285,7 @@ function deleteRelease(version) {
 
 // Delete modal handling
 let _pendingDeleteVersion = null;
+
 function openDeleteModal(version) {
   _pendingDeleteVersion = version;
   const modal = document.getElementById('deleteModal');
@@ -291,11 +311,18 @@ async function confirmDelete() {
   if (!_pendingDeleteVersion) return closeDeleteModal();
   
   try {
+    console.log('Deleting release:', _pendingDeleteVersion);
     const response = await fetch(`${API_BASE}/${_pendingDeleteVersion}`, {
       method: 'DELETE'
     });
 
-    if (!response.ok) throw new Error('Failed to delete release');
+    console.log('Delete response status:', response.status);
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error('Delete error:', errorText);
+      throw new Error(errorText || 'Failed to delete release');
+    }
 
     // Refresh releases from server
     const refreshResponse = await fetch(API_BASE);
@@ -305,9 +332,11 @@ async function confirmDelete() {
     
     closeDeleteModal();
     renderVersionList();
+    alert('Release deleted successfully!');
   } catch (error) {
     console.error('Error deleting release:', error);
-    alert('Failed to delete release. Please try again.');
+    alert('Failed to delete release: ' + error.message);
+    closeDeleteModal();
   }
 }
 
@@ -318,37 +347,55 @@ function cancelDelete() {
 // Form submit handler
 async function _handleFormSubmit(e) {
   e.preventDefault();
+  
   const mode = document.getElementById('formMode').value;
   const original = document.getElementById('originalVersion').value;
   const version = document.getElementById('releaseVersion').value.trim();
   const start_date = document.getElementById('releaseDate').value;
-  let notes = document.getElementById('releaseNotes').value || '';
+  const notes = document.getElementById('releaseNotes').value.trim();
   const modalError = document.getElementById('modalError');
 
-  if (!version || !start_date) {
-    modalError.textContent = 'Please fill in required fields: version and start date.';
+  console.log('Form submit:', { mode, version, start_date, notes });
+
+  // Validation
+  if (!version) {
+    modalError.textContent = 'Version is required';
     modalError.style.display = 'block';
     return;
   }
 
-  const year = (new Date(start_date)).getFullYear();
-  if (isNaN(year) || year < 2024 || year > 2026) {
-    modalError.textContent = 'Start date year must be between 2024 and 2026.';
+  if (!start_date) {
+    modalError.textContent = 'Start date is required';
     modalError.style.display = 'block';
     return;
   }
 
+  // Year validation (allow current year ±5 years)
+  const year = new Date(start_date).getFullYear();
+  const currentYear = new Date().getFullYear();
+  const minYear = currentYear - 1;
+  const maxYear = currentYear + 5;
+  if (isNaN(year) || year < minYear || year > maxYear) {
+    modalError.textContent = `Start date year must be between ${minYear} and ${maxYear}`;
+    modalError.style.display = 'block';
+    return;
+  }
+
+  // Clear errors
   modalError.textContent = '';
   modalError.style.display = 'none';
 
+  // Build the release data object - match your C# Release model exactly
   const releaseData = {
-    version,
-    start_date,
+    version: version,
+    start_date: start_date,  // Send as YYYY-MM-DD string, backend will convert to DateOnly
     rollout_date: null,
     complete_date: null,
-    notes: notes.trim() || null,
+    notes: notes || null,
     hotfix_notes: null
   };
+
+  console.log('Sending data:', releaseData);
 
   try {
     let response;
@@ -356,23 +403,39 @@ async function _handleFormSubmit(e) {
     if (mode === 'add') {
       response = await fetch(API_BASE, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
         body: JSON.stringify(releaseData)
       });
     } else if (mode === 'edit') {
       response = await fetch(`${API_BASE}/${original}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
         body: JSON.stringify(releaseData)
       });
     }
 
+    console.log('Response status:', response.status);
+
     if (!response.ok) {
-      const error = await response.text();
-      throw new Error(error || 'Failed to save release');
+      const errorText = await response.text();
+      console.error('Error response:', errorText);
+      
+      // Try to parse as JSON for better error messages
+      try {
+        const errorJson = JSON.parse(errorText);
+        throw new Error(errorJson.error || errorJson.title || errorText);
+      } catch {
+        throw new Error(errorText || `Failed to ${mode} release`);
+      }
     }
 
-    // Refresh releases
+    // Refresh releases from server
     const refreshResponse = await fetch(API_BASE);
     if (!refreshResponse.ok) throw new Error('Failed to refresh releases');
     const data = await refreshResponse.json();
@@ -380,6 +443,7 @@ async function _handleFormSubmit(e) {
     
     closeReleaseModal();
     renderVersionList();
+    alert(`Release ${mode === 'add' ? 'added' : 'updated'} successfully!`);
   } catch (error) {
     console.error('Error saving release:', error);
     modalError.textContent = error.message || 'Failed to save release. Please try again.';
@@ -395,22 +459,41 @@ function setup() {
   if (isAdmin) {
     adminControls.setAttribute('aria-hidden', 'false');
     adminControls.style.display = 'block';
-    document.getElementById('addReleaseBtn').addEventListener('click', () => openReleaseModal('add'));
-    document.getElementById('modalClose').addEventListener('click', closeReleaseModal);
-    document.getElementById('modalCancel').addEventListener('click', closeReleaseModal);
-    document.getElementById('modalBackdrop').addEventListener('click', closeReleaseModal);
-    document.getElementById('releaseForm').addEventListener('submit', _handleFormSubmit);
-    document.getElementById('deleteModalClose').addEventListener('click', cancelDelete);
-    document.getElementById('cancelDeleteBtn').addEventListener('click', cancelDelete);
-    document.getElementById('confirmDeleteBtn').addEventListener('click', confirmDelete);
-    document.getElementById('deleteBackdrop').addEventListener('click', cancelDelete);
+    
+    // Add Release button
+    const addBtn = document.getElementById('addReleaseBtn');
+    if (addBtn) {
+      addBtn.addEventListener('click', () => openReleaseModal('add'));
+    }
+    
+    // Modal controls
+    const modalClose = document.getElementById('modalClose');
+    const modalCancel = document.getElementById('modalCancel');
+    const modalBackdrop = document.getElementById('modalBackdrop');
+    const releaseForm = document.getElementById('releaseForm');
+    
+    if (modalClose) modalClose.addEventListener('click', closeReleaseModal);
+    if (modalCancel) modalCancel.addEventListener('click', closeReleaseModal);
+    if (modalBackdrop) modalBackdrop.addEventListener('click', closeReleaseModal);
+    if (releaseForm) releaseForm.addEventListener('submit', _handleFormSubmit);
+    
+    // Delete modal wiring
+    const deleteModalClose = document.getElementById('deleteModalClose');
+    const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
+    const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+    const deleteBackdrop = document.getElementById('deleteBackdrop');
+    
+    if (deleteModalClose) deleteModalClose.addEventListener('click', cancelDelete);
+    if (cancelDeleteBtn) cancelDeleteBtn.addEventListener('click', cancelDelete);
+    if (confirmDeleteBtn) confirmDeleteBtn.addEventListener('click', confirmDelete);
+    if (deleteBackdrop) deleteBackdrop.addEventListener('click', cancelDelete);
   } else {
     adminControls.setAttribute('aria-hidden', 'true');
     adminControls.style.display = 'none';
   }
 }
 
-// initialize
+// Initialize when DOM is ready
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', setup);
 } else {

@@ -97,7 +97,6 @@ namespace FalveyInsuranceGroup.Backend.Controllers
         [HttpPost]
         public async Task<ActionResult<Release>> addRelease(Release release)
         {
-            
             // Checks to see if release version follows Semantic Versioning 
             if (!_service.hasValidVersion(release.version)) {
                 return BadRequest(new
@@ -107,7 +106,7 @@ namespace FalveyInsuranceGroup.Backend.Controllers
                     timestamp = DateTime.UtcNow
                 });
             }
-
+            
             _context.Releases.Add(release);
             await _context.SaveChangesAsync();
 

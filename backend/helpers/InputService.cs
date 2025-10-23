@@ -28,7 +28,12 @@ namespace FalveyInsuranceGroup.Backend.Helpers
             // Format is v[MAJOR].[MINOR].[PATCH]
             var version_regex = "^v\\d+\\.\\d+\\.\\d+$";
 
-            if (!Regex.IsMatch(version_regex, version) || string.IsNullOrEmpty(version))
+            // Defensive: check null/empty before regex
+            if (string.IsNullOrEmpty(version))
+            {
+                return false;
+            }
+            if (!Regex.IsMatch(version, version_regex))
             {
                 return false;
             }
@@ -39,7 +44,7 @@ namespace FalveyInsuranceGroup.Backend.Helpers
         /// <summary>
         /// Checks to see if a entity object holds a valid policy
         /// </summary>
-        /// <param name="policy_id">The id of a policy/param>
+        /// <param name="policy_id">The id of a policy</param>
         /// <returns>
         ///     True - Has a valid policy
         ///     False - Has an invalid policy
