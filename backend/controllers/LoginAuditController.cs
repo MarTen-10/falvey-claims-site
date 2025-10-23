@@ -1,12 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using data;
-using backend.models;
+using FalveyInsuranceGroup.Db;
+using FalveyInsuranceGroup.Backend.Models;
+﻿using FalveyInsuranceGroup.Backend.Dtos;
 using System.Linq.Expressions;
-using backend.dtos;
 
-
-namespace backend.controllers
+namespace FalveyInsuranceGroup.Backend.Controllers
 {
     /// <summary>
     /// A controller that uses http methods to modify and fetch from a database
@@ -15,10 +14,10 @@ namespace backend.controllers
     [ApiController]
     public class LoginAuditController : ControllerBase
     {
-        private readonly AppDbContext _context; // contains the database context
+        private readonly FalveyInsuranceGroupContext _context; // contains the database context
 
         // constructor that sets private variable with database context
-        public LoginAuditController(AppDbContext context)
+        public LoginAuditController(FalveyInsuranceGroupContext context)
         {
             _context = context;
         }
@@ -77,8 +76,6 @@ namespace backend.controllers
                     return BadRequest("User ID is not valid");
                 }
             }
-
-
 
             // checks if the LoginAudit has a valid event entry
             if (!hasValidEvent(dto.login_event))
@@ -143,7 +140,6 @@ namespace backend.controllers
                 return NotFound($"LoginAudit with the ID {id} does not exist.");
             }
 
-
             // overwrites values in fetched entity
             auditToUpdate.user_id = dto.user_id;
             auditToUpdate.login_event = dto.login_event;
@@ -156,8 +152,6 @@ namespace backend.controllers
             return NoContent();
 
         }
-
-
 
         /// <summary>
         /// Fetches a LoginAudit to delete it from the database
@@ -202,7 +196,6 @@ namespace backend.controllers
 
         }
 
-
         /// <summary>
         /// Takes a LoginAudit and maps it to a LoginAuditDto
         /// Then it represents it as data so it can be converted to a SQL query
@@ -238,7 +231,6 @@ namespace backend.controllers
 
         }
         
-
         /// <summary>
         /// Checks to see if a LoginAuditDto entity contains the same ID as the given ID parameter
         /// </summary>
@@ -250,7 +242,5 @@ namespace backend.controllers
 
         }
     }
-
-
 
 }
