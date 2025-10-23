@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using data;
-using backend.models;
-using backend.dtos;
+using FalveyInsuranceGroup.Db;
+using FalveyInsuranceGroup.Backend.Models;
+﻿using FalveyInsuranceGroup.Backend.Dtos;
 using System.Linq.Expressions;
 
-namespace backend.controllers
+namespace FalveyInsuranceGroup.Backend.Controllers
 {
     /// <summary>
     /// handles operations related to claim note data
@@ -14,9 +14,9 @@ namespace backend.controllers
     [ApiController]
     public class ClaimNotesController : ControllerBase
     {
-        private readonly AppDbContext _context;
+        private readonly FalveyInsuranceGroupContext _context;
 
-        public ClaimNotesController(AppDbContext context)
+        public ClaimNotesController(FalveyInsuranceGroupContext context)
         {
             _context = context;
         }
@@ -128,13 +128,6 @@ namespace backend.controllers
         [HttpPut("{id}")]
         public async Task<ActionResult<ClaimNote>> UpdateClaimNote(int id, [FromBody] ClaimNoteDto dto)
         {
-            // checks to see if the updatedClaimNote has sufficient fields filled out
-            if (!ModelState.IsValid)
-            {
-                return ValidationProblem(ModelState);
-            }
-
-
              // makes sure that a user does not give a value for note_id field
             if (dto.note_id.HasValue)
             {
@@ -249,6 +242,7 @@ namespace backend.controllers
         };
 
     }
+
 
 
 
