@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using data;
-using backend.models;
+using FalveyInsuranceGroup.Db;
+using FalveyInsuranceGroup.Backend.Models;
+﻿using FalveyInsuranceGroup.Backend.Dtos;
 using System.Linq.Expressions;
-using backend.dtos;
 
-namespace backend.controllers
+namespace FalveyInsuranceGroup.Backend.Controllers
 {
 
     /// <summary>
@@ -15,9 +15,9 @@ namespace backend.controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly AppDbContext _context;
+        private readonly FalveyInsuranceGroupContext _context;
 
-        public UsersController(AppDbContext context)
+        public UsersController(FalveyInsuranceGroupContext context)
         {
             _context = context;
         }
@@ -278,8 +278,5 @@ namespace backend.controllers
         }
 
     }
-
-
-
 
 }
