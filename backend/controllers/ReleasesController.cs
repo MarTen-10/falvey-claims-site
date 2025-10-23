@@ -15,11 +15,16 @@ namespace FalveyInsuranceGroup.Backend.Controllers
     {
         private readonly FalveyInsuranceGroupContext _context;
         private readonly InputService _service;
+        private readonly ILogger<ReleasesController> _logger;
         
-        public ReleasesController(FalveyInsuranceGroupContext context, InputService service)
+        public ReleasesController(
+            FalveyInsuranceGroupContext context, 
+            InputService service,
+            ILogger<ReleasesController> logger)
         {
             _context = context;
             _service = service;
+            _logger = logger;
         }
 
         /// GET: api/releases
@@ -29,9 +34,34 @@ namespace FalveyInsuranceGroup.Backend.Controllers
         /// </summary>
         /// <returns>A list of releases</returns>
         [HttpGet]
-        public async Task<ActionResult<Release>> getReleases()
+        public async Task<ActionResult<IEnumerable<Release>>> getReleases()
         {
-            return Ok(await _context.Releases.AsNoTracking().ToListAsync());
+            try
+            {
+                _logger.LogInformation("Fetching releases from database...");
+                
+                var releases = await _context.Releases
+                    .OrderByDescending(r => r.start_date)
+                    .ToListAsync();
+                
+                _logger.LogInformation("Found {Count} releases", releases.Count);
+                
+                return Ok(new
+                {
+                    success = true,
+                    count = releases.Count,
+                    data = releases
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error fetching releases");
+                return StatusCode(500, new
+                {
+                    success = false,
+                    error = ex.Message
+                });
+            }
         }
 
         /// GET: api/releases/id
@@ -91,7 +121,7 @@ namespace FalveyInsuranceGroup.Backend.Controllers
         ///  Updates an existing release by version
         /// </summary>
         /// <param name="id">The version to update</param>
-        /// <param name="updated_elease">Release object that holds the new details</param>
+        /// <param name="updated_release">Release object that holds the new details</param>
         /// <returns>No content</returns>
         /// <response code="204">The update was a success</response>
         /// <response code="400">Validation failed</response>
@@ -113,6 +143,7 @@ namespace FalveyInsuranceGroup.Backend.Controllers
             existing_release.notes = updated_release.notes;
             existing_release.hotfix_notes = updated_release.hotfix_notes;
 
+            await _context.SaveChangesAsync();
 
             return NoContent(); // 204
         }
@@ -141,7 +172,4 @@ namespace FalveyInsuranceGroup.Backend.Controllers
             return NoContent();
         }
     }
-
-
 }
-

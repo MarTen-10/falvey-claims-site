@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FalveyInsuranceGroup")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5b3fdaa714c21902c0f9c15deae789baf4473d34")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c3c9f54e28896530183d3499b3d0ce1772542e88")]
 [assembly: System.Reflection.AssemblyProductAttribute("FalveyInsuranceGroup")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FalveyInsuranceGroup")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

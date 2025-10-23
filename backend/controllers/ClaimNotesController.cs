@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using data;
-using backend.models;
+using FalveyInsuranceGroup.Db;
+using FalveyInsuranceGroup.Backend.Models;
 using backend.dtos;
 using System.Linq.Expressions;
 
@@ -14,9 +14,9 @@ namespace backend.controllers
     [ApiController]
     public class ClaimNotesController : ControllerBase
     {
-        private readonly AppDbContext _context;
+        private readonly FalveyInsuranceGroupContext _context;
 
-        public ClaimNotesController(AppDbContext context)
+        public ClaimNotesController(FalveyInsuranceGroupContext context)
         {
             _context = context;
         }
@@ -196,7 +196,7 @@ namespace backend.controllers
         /// <returns>A task with bool result</returns>
         private async Task<bool> hasValidUserId(int? author_user_id)
         {
-            return await _context.users.AnyAsync(u => u.user_id == author_user_id);
+            return await _context.Users.AnyAsync(u => u.user_id == author_user_id);
 
         }
 

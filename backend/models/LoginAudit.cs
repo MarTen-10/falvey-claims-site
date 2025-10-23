@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 
-namespace backend.models
+namespace FalveyInsuranceGroup.Backend.Models
 {
     [Table("login_audit")]
     public class LoginAudit

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using FalveyProject.Backend.Filters;
+using FalveyInsuranceGroup.Backend.Filters;
 
 namespace FalveyInsuranceGroup.Backend.Models
 {

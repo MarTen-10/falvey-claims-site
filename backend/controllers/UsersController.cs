@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using data;
-using backend.models;
+using FalveyInsuranceGroup.Db;
+using FalveyInsuranceGroup.Backend.Models;
 using System.Linq.Expressions;
 using backend.dtos;
 
@@ -15,9 +15,9 @@ namespace backend.controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly AppDbContext _context;
+        private readonly FalveyInsuranceGroupContext _context;
 
-        public UsersController(AppDbContext context)
+        public UsersController(FalveyInsuranceGroupContext context)
         {
             _context = context;
         }
@@ -29,7 +29,7 @@ namespace backend.controllers
         [HttpGet]
         public async Task<List<UserDto>> GetUsers()
         {
-            var list_users = await _context.users
+            var list_users = await _context.Users
             .AsNoTracking()
             .Select(mapToUserDto)
             .ToListAsync();
@@ -46,7 +46,7 @@ namespace backend.controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<UserDto>> GetUser(int id)
         {
-            var user = await _context.users.FindAsync(id);
+            var user = await _context.Users.FindAsync(id);
 
             if (user == null) {
                 return NotFound($"The User with the ID {id} could not be found");
@@ -105,7 +105,7 @@ namespace backend.controllers
                 updated_at = dto.updated_at
             };
 
-            _context.users.Add(new_user);
+            _context.Users.Add(new_user);
             await _context.SaveChangesAsync();
 
 
@@ -152,7 +152,7 @@ namespace backend.controllers
                 }
             }
 
-            var update_user = await _context.users.FindAsync(id);
+            var update_user = await _context.Users.FindAsync(id);
             if (update_user == null) {
                 return NotFound($"The User with the ID {id} was not found");
             }
@@ -182,12 +182,12 @@ namespace backend.controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<User>> DeleteUser(int id)
         {
-            var delete_user = await _context.users.FindAsync(id);
+            var delete_user = await _context.Users.FindAsync(id);
             if (delete_user == null) {
                 return NotFound($"The User with ID {id} does not exist");
             }
 
-            _context.users.Remove(delete_user);
+            _context.Users.Remove(delete_user);
             await _context.SaveChangesAsync();
 
 
@@ -228,7 +228,7 @@ namespace backend.controllers
 
             // assigns variable with an IQueryable that contains a User with the same email value as newUser
             // assigns empty IQueryable if no User with email value is found
-            var entityWithEmail = _context.users.Where(u => u.email == new_email);
+            var entityWithEmail = _context.Users.Where(u => u.email == new_email);
 
             // checks to see if IQueryable is empty
             if (entityWithEmail.Any()) {

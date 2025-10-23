@@ -1,15 +1,15 @@
-using data;
+using FalveyInsuranceGroup.Db;
 using Microsoft.EntityFrameworkCore;
 using BCrypt.Net;
-using backend.models;
+using FalveyInsuranceGroup.Backend.Models;
 
 namespace backend.services
 {
     public class AccountService
     {
-        private readonly AppDbContext _context;
+        private readonly FalveyInsuranceGroupContext _context;
 
-        public AccountService(AppDbContext context)
+        public AccountService(FalveyInsuranceGroupContext context)
         {
             _context = context;
         }
@@ -27,10 +27,11 @@ namespace backend.services
                 email = acc_email,
                 password_hash = hashed_pass,
                 role = "Employee",
+                is_active = true,
 
             };
 
-            _context.users.Add(to_add);
+            _context.Users.Add(to_add);
             await _context.SaveChangesAsync();
 
             return true;
@@ -41,7 +42,7 @@ namespace backend.services
         private async Task<bool> IsEmailValid(string new_email)
         {
         
-            var has_email = await _context.users.FirstOrDefaultAsync(u => u.email == new_email);
+            var has_email = await _context.Users.FirstOrDefaultAsync(u => u.email == new_email);
 
 
             if (has_email != null) {

@@ -41,6 +41,8 @@ namespace FalveyInsuranceGroup.Db
         public DbSet<Session> Sessions { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Claim> Claims { get; set; }
+    public DbSet<ClaimNote> ClaimNotes { get; set; }
+    public DbSet<LoginAudit> LoginAudits { get; set; }
         public DbSet<Release> Releases { get; set; }
 
     }

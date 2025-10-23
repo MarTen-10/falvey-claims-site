@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using data;
-using backend.models;
+using FalveyInsuranceGroup.Db;
+using FalveyInsuranceGroup.Backend.Models;
 using System.Linq.Expressions;
 using backend.dtos;
 
@@ -15,13 +15,13 @@ namespace backend.controllers
     [ApiController]
     public class LoginAuditController : ControllerBase
     {
-        private readonly AppDbContext _context; // contains the database context
+    private readonly FalveyInsuranceGroupContext _context; // contains the database context
 
         // constructor that sets private variable with database context
-        public LoginAuditController(AppDbContext context)
-        {
-            _context = context;
-        }
+            public LoginAuditController(FalveyInsuranceGroupContext context)
+            {
+                _context = context;
+            }
 
         /// <summary>
         /// Gets a list of login audits
@@ -246,7 +246,7 @@ namespace backend.controllers
         /// <returns>A task with bool result</returns>
         private async Task<bool> hasValidUserId(int? audit_user_id)
         {
-            return await _context.users.AnyAsync(u => u.user_id == audit_user_id);
+            return await _context.Users.AnyAsync(u => u.user_id == audit_user_id);
 
         }
     }

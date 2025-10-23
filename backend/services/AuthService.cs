@@ -1,4 +1,4 @@
-using data;
+using FalveyInsuranceGroup.Db;
 using BCrypt.Net;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,9 +7,9 @@ namespace backend.services
     public class AuthService
     {
 
-        private readonly AppDbContext _context;
+        private readonly FalveyInsuranceGroupContext _context;
 
-        public AuthService(AppDbContext context)
+        public AuthService(FalveyInsuranceGroupContext context)
         {
             _context = context;
 
@@ -24,7 +24,7 @@ namespace backend.services
         /// <returns>A bool value</returns>
         public async Task<bool> validateUser(string user_email, string password)
         {
-            var user = await _context.users.FirstOrDefaultAsync(u => u.email == user_email);
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.email == user_email);
 
             if (user == null || !BCrypt.Net.BCrypt.EnhancedVerify(password, user.password_hash))
             {

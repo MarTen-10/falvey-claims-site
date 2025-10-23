@@ -221,18 +221,18 @@ CREATE INDEX ix_sessions_expiry      ON sessions (expires_at);
 -- Login audit (dashboard + security)
 -- ----------------------
 CREATE TABLE login_audit (
-  audit_id     BIGINT AUTO_INCREMENT PRIMARY KEY,
-  user_id      INT NULL,
-  login_event        ENUM('LOGIN_SUCCESS','LOGIN_FAIL','LOGOUT') NOT NULL,
-  ip_address   VARCHAR(45),
-  user_agent   VARCHAR(300),
-  occurred_at  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  audit_id       BIGINT AUTO_INCREMENT PRIMARY KEY,
+  user_id        INT NULL,
+  login_event    ENUM('LOGIN_SUCCESS','LOGIN_FAIL','LOGOUT') NOT NULL,
+  ip_address     VARCHAR(45),
+  user_agent     VARCHAR(300),
+  occurred_at    TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT fk_login_user FOREIGN KEY (user_id)
     REFERENCES users(user_id) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB;
 
 CREATE INDEX ix_login_user_time  ON login_audit (user_id, occurred_at);
-CREATE INDEX ix_login_event_time ON login_audit (event, occurred_at);
+CREATE INDEX ix_login_event_time ON login_audit (login_event, occurred_at);
 
 -- ----------------------
 -- Announcements (dashboard feed)
@@ -292,6 +292,6 @@ VALUES ('v0.2.0', CURDATE(), 'Employee hub improvements + audit + announcements'
 INSERT INTO announcements (title, body, publish_at, created_by)
 VALUES ('Welcome to the Employee Hub', 'Please review MFA policy.', NOW(), 2);
 
-INSERT INTO login_audit (user_id, event, ip_address, user_agent, occurred_at) VALUES
+INSERT INTO login_audit (user_id, login_event, ip_address, user_agent, occurred_at) VALUES
 (2, 'LOGIN_SUCCESS', '127.0.0.1', 'Chrome', NOW() - INTERVAL 1 DAY),
 (2, 'LOGOUT',        '127.0.0.1', 'Chrome', NOW() - INTERVAL 12 HOUR);
